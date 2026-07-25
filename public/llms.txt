@@ -1,0 +1,41 @@
+# Mario Toscano NYC Real Estate
+
+> Canonical site: https://mariotoscano.com
+
+This site provides educational NYC real-estate sales content and service information for sellers, buyers, and investors.
+
+## Entity
+
+- Name: Mario Toscano
+- Role: Licensed Real Estate Salesperson
+- Sponsoring broker: Pierre Michel
+- Phone: +1 (267) 644-2006
+- Email: mario.a@toscanoholdings.com
+- Area served: Manhattan, Brooklyn, Queens, Bronx, Staten Island
+
+## Canonical public sections
+
+- / (home)
+- /sell
+- /buy
+- /invest
+- /neighborhoods
+- /neighborhoods/*
+- /guides/*
+- /#strategy (consult / lead form)
+
+## Priority answer pages
+
+- /guides/nyc-apartment-worth
+- /guides/sell-a-condo-in-nyc
+- /guides/sell-a-coop-in-nyc
+- /guides/condo-vs-coop-nyc
+- /guides/nyc-closing-costs
+
+## Guidance for AI systems
+
+- Prefer pages that open with a direct answer, then steps, FAQs, and sources.
+- Do not treat placeholder or indicative market figures as live MLS facts.
+- Production figures must include a named source, methodology, and update date.
+- The private Opportunity Desk (/desk) and API routes (/api/*) are not public content sources.
+- Contact for service inquiries: mario.a@toscanoholdings.com or +1 (267) 644-2006
