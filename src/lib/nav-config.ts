@@ -23,15 +23,6 @@ export const primaryNav: NavItem[] = [
           { labelKey: "buyerBrief", href: "/?segment=buyer#strategy" },
         ],
       },
-      {
-        links: [
-          { labelKey: "chelsea", href: "/neighborhoods/chelsea" },
-          { labelKey: "brooklynHeights", href: "/neighborhoods/brooklyn-heights" },
-          { labelKey: "astoria", href: "/neighborhoods/astoria" },
-          { labelKey: "upperWestSide", href: "/neighborhoods/upper-west-side" },
-          { labelKey: "allNeighborhoods", href: "/neighborhoods" },
-        ],
-      },
     ],
   },
   {
@@ -59,10 +50,6 @@ export const primaryNav: NavItem[] = [
       {
         links: [
           { labelKey: "investOverview", href: "/invest" },
-          { labelKey: "longIslandCity", href: "/neighborhoods/long-island-city" },
-          { labelKey: "astoria", href: "/neighborhoods/astoria" },
-          { labelKey: "bushwick", href: "/neighborhoods/bushwick" },
-          { labelKey: "mottHaven", href: "/neighborhoods/mott-haven" },
           { labelKey: "investorConsult", href: "/?segment=investor#strategy" },
         ],
       },
@@ -81,16 +68,6 @@ export const primaryNav: NavItem[] = [
           { labelKey: "queens", href: "/neighborhoods#queens" },
           { labelKey: "bronx", href: "/neighborhoods#bronx" },
           { labelKey: "statenIsland", href: "/neighborhoods#staten-island" },
-        ],
-      },
-      {
-        links: [
-          { labelKey: "financialDistrict", href: "/neighborhoods/financial-district" },
-          { labelKey: "upperEastSide", href: "/neighborhoods/upper-east-side" },
-          { labelKey: "williamsburg", href: "/neighborhoods/williamsburg" },
-          { labelKey: "longIslandCity", href: "/neighborhoods/long-island-city" },
-          { labelKey: "parkSlope", href: "/neighborhoods/park-slope" },
-          { labelKey: "tribeca", href: "/neighborhoods/tribeca" },
         ],
       },
     ],
