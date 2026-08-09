@@ -82,7 +82,7 @@ export default async function BuyPage({ params }: Props) {
     <main className="bg-[var(--paper)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="relative -mt-[72px] flex min-h-[calc(52vh+72px)] items-end overflow-hidden px-5 pb-16 pt-36 text-white lg:min-h-[calc(58vh+72px)] lg:px-8 lg:pb-20 lg:pt-40">
+      <section className="relative -mt-[72px] flex min-h-[calc(48vh+72px)] items-end overflow-hidden px-5 pb-12 pt-32 text-white max-sm:min-h-[calc(42vh+72px)] lg:min-h-[calc(58vh+72px)] lg:px-8 lg:pb-20 lg:pt-40">
         <Image
           src="/images/buy-hero-park.jpg"
           alt=""
@@ -99,7 +99,7 @@ export default async function BuyPage({ params }: Props) {
         />
         <div className="relative mx-auto w-full max-w-5xl">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--platinum)]">{t("eyebrow")}</p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-semibold tracking-[-.055em] sm:text-7xl">{t("title")}</h1>
+          <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.055em] max-sm:text-[2.15rem] sm:text-7xl">{t("title")}</h1>
         </div>
       </section>
 

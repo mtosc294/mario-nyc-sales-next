@@ -150,7 +150,7 @@ export function PrimaryNav() {
         </Link>
       </nav>
 
-      <div className="flex items-center gap-2 lg:hidden">
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 lg:hidden">
         <LanguageSwitcher />
         <a
           href={siteConfig.phoneHref}
@@ -160,14 +160,14 @@ export function PrimaryNav() {
         </a>
         <Link
           href="/#strategy"
-          className="rounded-sm border border-[var(--platinum)]/50 px-3 py-2 text-sm"
+          className="inline-flex min-h-10 items-center rounded-sm border border-[var(--platinum)]/50 px-2.5 py-2 text-xs font-semibold sm:px-3 sm:text-sm"
           onClick={closeAll}
         >
           {t("consult")}
         </Link>
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-sm border border-[var(--platinum)]/40"
+          className="inline-flex size-11 items-center justify-center rounded-sm border border-[var(--platinum)]/40"
           aria-expanded={mobileOpen}
           aria-controls={`${menuId}-mobile`}
           aria-label={mobileOpen ? t("closeMenu") : t("openMenu")}

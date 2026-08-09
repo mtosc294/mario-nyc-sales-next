@@ -19,7 +19,7 @@ export default async function NeighborhoodsHubPage({ params }: Props) {
   setRequestLocale(locale);
   return (
     <main className="bg-[var(--paper)]">
-      <section className="relative -mt-[72px] flex min-h-[calc(42vh+72px)] items-end overflow-hidden px-5 pb-16 pt-36 text-white lg:min-h-[calc(48vh+72px)] lg:px-8 lg:pb-20 lg:pt-40">
+      <section className="relative -mt-[72px] flex min-h-[calc(38vh+72px)] items-end overflow-hidden px-5 pb-12 pt-32 text-white max-sm:min-h-[calc(34vh+72px)] lg:min-h-[calc(48vh+72px)] lg:px-8 lg:pb-20 lg:pt-40">
         <Image
           src="/images/neighborhoods-hero.jpg"
           alt=""
@@ -36,7 +36,7 @@ export default async function NeighborhoodsHubPage({ params }: Props) {
         />
         <div className="relative mx-auto w-full max-w-6xl">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--platinum)]">All five boroughs</p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-semibold tracking-[-.055em] sm:text-6xl">
+          <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.055em] max-sm:text-[2.15rem] sm:text-6xl">
             NYC neighborhood real estate guides
           </h1>
         </div>

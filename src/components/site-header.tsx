@@ -39,8 +39,8 @@ export function SiteHeader() {
           : "border-b-0 bg-gradient-to-b from-black/45 via-black/20 to-transparent",
       )}
     >
-      <div className="mx-auto flex h-[72px] max-w-[1180px] items-center justify-between gap-4 px-5 lg:px-5">
-        <Link href="/" className="flex min-w-0 items-center gap-3" aria-label={`${siteConfig.name} home`}>
+      <div className="mx-auto flex h-[72px] max-w-[1180px] items-center justify-between gap-2 px-4 sm:gap-4 sm:px-5 lg:px-5">
+        <Link href="/" className="flex min-w-0 flex-1 items-center gap-2.5 sm:gap-3" aria-label={`${siteConfig.name} home`}>
           <span className="relative size-10 shrink-0 overflow-hidden rounded-full bg-white/10">
             <Image
               src="/images/mario-headshot.png"
@@ -53,7 +53,7 @@ export function SiteHeader() {
           </span>
           <span className="min-w-0">
             <strong className="block truncate text-sm tracking-wide">{siteConfig.name}</strong>
-            <small className="mt-0.5 block max-w-[300px] text-[9px] uppercase leading-[1.35] tracking-[0.06em] text-[var(--platinum)]">
+            <small className="mt-0.5 hidden max-w-[300px] text-[9px] uppercase leading-[1.35] tracking-[0.06em] text-[var(--platinum)] sm:block">
               {advisorSubtitle()}
               {license ? ` · ${license}` : ""}
             </small>

@@ -143,7 +143,7 @@ export default async function HomePage({ params }: Props) {
 
       <section className="bg-[var(--navy-soft)] py-[95px] max-[900px]:py-[70px]">
         <div className="mx-auto grid w-[min(1180px,calc(100%-40px))] items-center gap-[50px] max-[900px]:grid-cols-1 lg:grid-cols-2 max-sm:w-[min(100%-28px,1180px)]">
-          <Reveal className="relative overflow-hidden rounded-[31px] bg-[var(--navy)] p-[38px] text-white">
+          <Reveal className="relative overflow-hidden rounded-[31px] bg-[var(--navy)] p-6 text-white max-sm:rounded-2xl sm:p-[38px]">
             <div className="pointer-events-none absolute -right-[50px] -top-[50px] size-[220px] rounded-full bg-white/5 blur-[35px]" />
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">For sellers</span>
             <h2 className="relative mt-3.5 text-[45px] font-semibold leading-[1.03] tracking-[-0.04em] max-[600px]:text-[37px]">

@@ -26,10 +26,10 @@ export default async function InvestPage({ params }: Props) {
 
   return (
     <main className="bg-[var(--paper)]">
-      <section className="relative -mt-[72px] bg-[var(--navy)] px-5 pb-24 pt-36 text-white">
+      <section className="relative -mt-[72px] bg-[var(--navy)] px-5 pb-16 pt-32 text-white max-sm:pb-14 max-sm:pt-28 sm:pb-24 sm:pt-36">
         <div className="mx-auto max-w-5xl">
           <p className="text-xs uppercase tracking-[.2em] text-[var(--platinum)]">{t("eyebrow")}</p>
-          <h1 className="mt-5 text-5xl font-semibold tracking-[-.055em] sm:text-7xl">{t("title")}</h1>
+          <h1 className="mt-5 text-4xl font-semibold tracking-[-.055em] max-sm:text-[2.15rem] sm:text-7xl">{t("title")}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-white/70">{t("body")}</p>
           <Link
             href="/#strategy"

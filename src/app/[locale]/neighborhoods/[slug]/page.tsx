@@ -89,15 +89,15 @@ export default async function NeighborhoodPage({ params }: Props) {
     <main className="bg-[var(--paper)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="relative -mt-[72px] min-h-[calc(560px+72px)] overflow-hidden bg-[var(--navy)] text-white">
+      <section className="relative -mt-[72px] min-h-[calc(440px+72px)] overflow-hidden bg-[var(--navy)] text-white max-sm:min-h-[calc(360px+72px)]">
         <Image src={hood.image} alt={`${hood.name} illustrated skyline`} fill priority className="object-cover opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)] via-[color-mix(in_srgb,var(--navy)_55%,transparent)] to-transparent" />
-        <div className="relative mx-auto flex min-h-[calc(560px+72px)] max-w-6xl items-end px-5 pb-16 pt-36 lg:px-8">
+        <div className="relative mx-auto flex min-h-[calc(440px+72px)] max-w-6xl items-end px-5 pb-12 pt-32 max-sm:min-h-[calc(360px+72px)] max-sm:pb-10 max-sm:pt-28 lg:px-8 lg:pb-16">
           <div>
             <p className="text-xs uppercase tracking-[.2em] text-[var(--platinum)]">
               {hood.borough} neighborhood guide
             </p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-[-.055em] sm:text-7xl">{hood.name}</h1>
+            <h1 className="mt-4 text-4xl font-semibold tracking-[-.055em] max-sm:text-[2.15rem] sm:text-7xl">{hood.name}</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">{hood.summary}</p>
             <p className="mt-4 text-sm text-white/50">
               Updated {formatUpdated(hood.updatedAt)} · Reviewed by {hood.author}
