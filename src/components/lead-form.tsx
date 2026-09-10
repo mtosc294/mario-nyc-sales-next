@@ -75,7 +75,7 @@ export function LeadForm() {
         </h2>
         <p className="mt-4 leading-7 text-neutral-600">{t("body")}</p>
         <p className="mt-6 text-sm leading-6 text-neutral-500">
-          {siteConfig.name} · Sponsored by {siteConfig.brokerage}
+          {siteConfig.name} · {siteConfig.jobTitle}
           <br />
           <a href={siteConfig.phoneHref} className="underline-offset-2 hover:underline">
             {siteConfig.phone}

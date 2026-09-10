@@ -235,12 +235,12 @@ export default async function BuyPage({ params }: Props) {
           </Stagger>
         </Reveal>
 
-        <Reveal className="mt-16 rounded-3xl border border-[var(--line)] bg-[var(--navy)] p-8 text-white sm:p-10">
+        <Reveal className="mt-16 border-t border-[var(--line)] pt-10">
           <h2 className="text-3xl font-semibold tracking-[-.03em]">{t("readyTitle")}</h2>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-white/75">{t("readyBody")}</p>
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-700">{t("readyBody")}</p>
           <Link
             href={consultHref}
-            className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-navy"
+            className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-navy px-6 py-3 font-semibold text-white"
           >
             {t("cta")} <ArrowRight className="size-4" />
           </Link>

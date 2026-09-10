@@ -198,15 +198,15 @@ export default async function NeighborhoodPage({ params }: Props) {
         </div>
 
         <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-          <div className="rounded-none border border-[var(--line)] bg-[var(--navy)] p-7 text-white">
-            <p className="kicker">How to read this market</p>
-            <p className="mt-4 text-sm leading-6 text-white/70">{hood.methodologyNote}</p>
-            <p className="mt-4 text-xs leading-5 text-platinum">
+          <div className="rounded-none border border-[var(--line)] bg-white p-7">
+            <p className="kicker text-navy">How to read this market</p>
+            <p className="mt-4 text-sm leading-6 text-neutral-700">{hood.methodologyNote}</p>
+            <p className="mt-4 text-xs leading-5 text-neutral-500">
               {hood.medianLabel} — indicative context only, not a live comp set.
             </p>
             <Link
               href={ctaHref(hood.primaryCta)}
-              className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy"
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-navy px-5 py-3 text-sm font-semibold text-white"
             >
               {ctaLabel(hood.primaryCta, hood.name)} <ArrowRight className="size-4" />
             </Link>

@@ -41,7 +41,7 @@ export default function OpenGraphImage() {
         >
           NYC sales guidance for owners, buyers, and investors
         </div>
-        <div style={{ color: "#B8BCC2", marginTop: 28, fontSize: 24 }}>Pierre Michel</div>
+        <div style={{ color: "#B8BCC2", marginTop: 28, fontSize: 24 }}>Licensed Real Estate Salesperson</div>
       </div>
     ),
     { ...size },

@@ -2,11 +2,10 @@ export const siteConfig = {
   siteUrl: "https://mariotoscano.com",
   name: "Mario Toscano",
   jobTitle: "Licensed Real Estate Salesperson",
-  email: "mario.a@toscanoholdings.com",
+  email: "mario@sefiotrealestate.com",
   phone: "+1 (267) 644-2006",
   phoneHref: "tel:+12676442006",
-  emailHref: "mailto:mario.a@toscanoholdings.com",
-  brokerage: "Pierre Michel",
+  emailHref: "mailto:mario@sefiotrealestate.com",
   /** Set when available; omit from UI while empty */
   licenseNumber: "" as string,
   areaServed: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"] as const,
@@ -26,5 +25,5 @@ export function licenseLabel(): string | null {
 }
 
 export function advisorSubtitle(): string {
-  return `${siteConfig.jobTitle} — ${siteConfig.brokerage}`;
+  return siteConfig.jobTitle;
 }

@@ -92,12 +92,12 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="bg-[var(--navy)] py-16 text-white lg:py-[96px]">
+      <section className="border-y border-[var(--line)] bg-white py-16 lg:py-[96px]">
         <div className="mx-auto w-[min(1180px,calc(100%-40px))] max-sm:w-[min(100%-28px,1180px)]">
           <Reveal className="max-w-3xl">
-            <p className="kicker">{t("howWeWork")}</p>
+            <p className="kicker text-navy">{t("howWeWork")}</p>
             <h2 className="mt-4 text-4xl sm:text-5xl">{t("howWeWorkTitle")}</h2>
-            <p className="mt-6 text-lg leading-8 text-white/70">{t("howWeWorkBody")}</p>
+            <p className="mt-6 text-lg leading-8 text-neutral-700">{t("howWeWorkBody")}</p>
           </Reveal>
         </div>
       </section>
@@ -143,16 +143,16 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-[var(--line)] bg-[var(--navy)] px-5 py-16 text-white lg:px-8 lg:py-[96px]">
+      <section className="border-y border-[var(--line)] bg-white px-5 py-16 lg:px-8 lg:py-[96px]">
         <Reveal className="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
           <div>
-            <p className="kicker">{t("sellerKicker")}</p>
+            <p className="kicker text-navy">{t("sellerKicker")}</p>
             <h2 className="mt-4 max-w-[16ch] text-4xl sm:text-5xl">{t("sellerTitle")}</h2>
-            <p className="mt-6 max-w-[36em] text-lg leading-8 text-white/70">{t("sellerBody")}</p>
+            <p className="mt-6 max-w-[36em] text-lg leading-8 text-neutral-700">{t("sellerBody")}</p>
           </div>
           <Link
             href="/#strategy"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-navy"
+            className="inline-flex w-fit items-center gap-2 rounded-full bg-navy px-6 py-3.5 text-sm font-semibold text-white"
           >
             {t("sellerCta")} <ArrowRight className="size-4" />
           </Link>

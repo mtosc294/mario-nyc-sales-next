@@ -31,7 +31,7 @@ Local: put secrets in `.env.local` (gitignored). Production: the same keys in th
 ```bash
 DATABASE_URL=          # Neon connection string
 RESEND_API_KEY=        # Resend API key
-LEAD_NOTIFY_TO=        # Inbox to notify (defaults to mario.a@toscanoholdings.com)
+LEAD_NOTIFY_TO=        # Inbox to notify (defaults to mario@sefiotrealestate.com)
 LEAD_FROM=             # Must be a verified Resend from-address
 ```
 
@@ -71,7 +71,7 @@ Then test:
 
 ## Site config
 
-Contact, brokerage, and domain live in `src/lib/site-config.ts`. Set `licenseNumber` when available (UI omits it while empty).
+Contact and domain live in `src/lib/site-config.ts`. Set `licenseNumber` when available (UI omits it while empty).
 
 ## Still required for full production
 

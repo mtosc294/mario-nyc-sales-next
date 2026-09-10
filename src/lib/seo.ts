@@ -45,7 +45,6 @@ export function personJsonLd(locale: string) {
     url: absoluteUrl(`/${locale}`),
     email: siteConfig.email,
     telephone: siteConfig.phone,
-    worksFor: { "@id": absoluteUrl(`/${locale}#brokerage`) },
     address: {
       "@type": "PostalAddress",
       addressLocality: "New York",

@@ -6,7 +6,7 @@ import { usePathname } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { PrimaryNav } from "@/components/primary-nav";
 import { useScrollPast } from "@/hooks/use-scroll-past";
-import { advisorSubtitle, licenseLabel, siteConfig } from "@/lib/site-config";
+import { licenseLabel, siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 function isHeroOverlayPath(pathname: string) {
@@ -85,7 +85,7 @@ export function SiteHeader() {
                 solid && "opacity-90",
               )}
             >
-              {advisorSubtitle()}
+              {siteConfig.jobTitle}
               {license ? ` · ${license}` : ""}
             </small>
           </span>

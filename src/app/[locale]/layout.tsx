@@ -65,11 +65,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         inLanguage: locale,
         publisher: { "@id": absoluteUrl(`/${locale}#business`) },
       },
-      {
-        "@type": "Organization",
-        "@id": absoluteUrl(`/${locale}#brokerage`),
-        name: siteConfig.brokerage,
-      },
       personJsonLd(locale),
       {
         "@type": "RealEstateAgent",
@@ -78,7 +73,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         url: absoluteUrl(`/${locale}`),
         email: siteConfig.email,
         telephone: siteConfig.phone,
-        parentOrganization: { "@id": absoluteUrl(`/${locale}#brokerage`) },
         areaServed: [
           {
             "@type": "City",
@@ -91,7 +85,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           })),
         ],
         employee: { "@id": absoluteUrl(`/${locale}#mario`) },
-        description: `Licensed Real Estate Salesperson sponsored by ${siteConfig.brokerage}.`,
+        description: siteConfig.jobTitle,
       },
     ],
   };

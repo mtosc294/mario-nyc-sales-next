@@ -16,7 +16,6 @@ export function GET() {
     "",
     `- Name: ${siteConfig.name}`,
     `- Role: ${siteConfig.jobTitle}`,
-    `- Sponsoring broker: ${siteConfig.brokerage}`,
     `- Phone: ${siteConfig.phone}`,
     `- Email: ${siteConfig.email}`,
     `- Area served: ${siteConfig.areaServed.join(", ")}`,
