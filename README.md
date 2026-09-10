@@ -55,7 +55,7 @@ npm run build
 
 Then test:
 
-- Home hero video (desktop uses `/video/hero-loop.mp4`; mobile/reduced-motion uses poster)
+- Home hero video (desktop `/video/hero-loop.mp4`; phones/tablets `/video/hero-loop-mobile.mp4`; reduced-motion uses poster)
 - Buy / Sell / Invest pages and neighborhood cross-links
 - `/neighborhoods` and `/neighborhoods/financial-district`
 - Guides: `/guides/nyc-apartment-worth`, `/guides/sell-a-coop-in-nyc`
