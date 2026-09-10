@@ -31,7 +31,7 @@ Local: put secrets in `.env.local` (gitignored). Production: the same keys in th
 ```bash
 DATABASE_URL=          # Neon connection string
 RESEND_API_KEY=        # Resend API key
-LEAD_NOTIFY_TO=        # Inbox to notify (defaults to mario@sefiotrealestate.com)
+LEAD_NOTIFY_TO=        # Inbox to notify (defaults to mario@sefirotrealestate.com)
 LEAD_FROM=             # Must be a verified Resend from-address
 ```
 

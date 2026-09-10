@@ -2,10 +2,10 @@ export const siteConfig = {
   siteUrl: "https://mariotoscano.com",
   name: "Mario Toscano",
   jobTitle: "Licensed Real Estate Salesperson",
-  email: "mario@sefiotrealestate.com",
+  email: "mario@sefirotrealestate.com",
   phone: "+1 (267) 644-2006",
   phoneHref: "tel:+12676442006",
-  emailHref: "mailto:mario@sefiotrealestate.com",
+  emailHref: "mailto:mario@sefirotrealestate.com",
   /** Set when available; omit from UI while empty */
   licenseNumber: "" as string,
   areaServed: ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"] as const,
