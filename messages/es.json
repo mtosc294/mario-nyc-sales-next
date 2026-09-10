@@ -55,10 +55,12 @@
     "it": "Italiano"
   },
   "Hero": {
-    "headline": "Encontrar tu hogar ideal nunca ha sido tan fácil",
+    "headline": "Asesoría de ventas en NYC para propietarios, compradores e inversores",
+    "dek": "Precia el edificio. No el folleto.",
     "buy": "Comprar",
     "sell": "Vender",
-    "invest": "Invertir"
+    "invest": "Invertir",
+    "consult": "Solicitar orientación personalizada"
   },
   "Home": {
     "howToStart": "Cómo empezar",
@@ -84,11 +86,15 @@
     "viewAll": "Ver todos los barrios de NYC",
     "guides": "Guías",
     "guidesTitle": "Respuestas claras a las preguntas que frenan operaciones.",
+    "guidesBody": "Cada guía abre con una respuesta directa, luego pasos específicos de NYC y una acción siguiente.",
+    "sellerKicker": "Para vendedores",
+    "sellerTitle": "¿Por cuánto podría vender tu propiedad en NYC?",
+    "sellerBody": "Una valoración real mira ventas recientes, competencia actual, costos mensuales, el edificio, condición, piso, luz, vista y quién compra ahora.",
+    "sellerCta": "Pedir una valoración personalizada",
     "strategy": "Estrategia",
     "getStarted": "Empezar",
-    "proofBoroughs": "Distritos cubiertos",
-    "proofPaths": "Caminos claros",
-    "proofGuides": "Guías de barrios"
+    "proofKicker": "Territorio",
+    "proofLine": "De Manhattan a Staten Island. Condo, co-op, townhouse."
   },
   "Buy": {
     "eyebrow": "Asesoría al comprador",
@@ -130,6 +136,7 @@
     "title": "Evalúa la tesis antes de enamorte del activo.",
     "body": "Usa supuestos consistentes de ingreso, gastos, financiamiento, renovación, regulación y valor de salida antes de comprometer tiempo o capital.",
     "cta": "Definir una tesis de inversión",
+    "directAnswer": "Respuesta directa",
     "exploreNeighborhoods": "Explorar barrios",
     "allNeighborhoods": "Todos los barrios"
   },

@@ -54,7 +54,7 @@ export function LanguageSwitcher() {
       </button>
       {open ? (
         <div
-          className="absolute right-0 top-full z-[60] mt-2 w-[min(280px,calc(100vw-24px))] border border-[var(--line)] bg-white text-[var(--ink)] shadow-[0_18px_40px_rgba(16,27,45,0.14)] max-[380px]:right-auto max-[380px]:left-0"
+          className="absolute right-0 top-full z-[60] mt-2 w-[min(280px,calc(100vw-24px))] border border-[var(--line)] bg-white text-ink shadow-[0_18px_40px_rgba(16,27,45,0.14)] max-[380px]:right-auto max-[380px]:left-0"
           role="listbox"
           aria-label={t("label")}
         >

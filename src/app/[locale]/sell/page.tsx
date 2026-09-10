@@ -1,19 +1,44 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight, BarChart3, Camera, FileCheck2, Handshake, Scale } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { FaqAccordion } from "@/components/motion/faq-accordion";
 import { Reveal, Stagger } from "@/components/motion/reveal";
+import { TypeHero } from "@/components/type-hero";
 import { Link } from "@/i18n/navigation";
 import { getNeighborhood } from "@/lib/neighborhoods";
+import {
+  sellDirectAnswer,
+  sellFaqs,
+  sellMistakes,
+  sellSteps,
+  sellUpdatedAt,
+  sellWhoItFits,
+} from "@/lib/sell-page";
+import { absoluteUrl, siteConfig } from "@/lib/site-config";
+import { breadcrumbJsonLd, metaDescription, pageAlternates } from "@/lib/seo";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Sell" });
   return {
     title: "Sell NYC Property",
-    description: t("body"),
+    description: metaDescription(sellDirectAnswer),
+    alternates: pageAlternates(locale, "/sell"),
+    openGraph: {
+      title: "Sell NYC Property",
+      description: metaDescription(sellDirectAnswer),
+    },
   };
+}
+
+function formatUpdated(iso: string, locale: string) {
+  return new Date(`${iso}T12:00:00`).toLocaleDateString(locale, {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 const hoodSlugs = ["financial-district", "upper-east-side", "williamsburg", "park-slope"] as const;
@@ -28,55 +53,69 @@ export default async function SellPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("Sell");
   const tNav = await getTranslations("Nav");
-
-  const steps = [
-    {
-      icon: BarChart3,
-      title: "Price from evidence",
-      text: "Review relevant closed sales, active competition and property-specific adjustments.",
-    },
-    {
-      icon: Camera,
-      title: "Prepare the launch",
-      text: "Coordinate condition, staging decisions, photography, floor plans and listing materials.",
-    },
-    {
-      icon: FileCheck2,
-      title: "Reduce friction",
-      text: "Gather building, financial and property documents before qualified buyers ask.",
-    },
-    {
-      icon: Handshake,
-      title: "Qualify the offer",
-      text: "Compare price with financing, contingencies, timing and execution risk.",
-    },
-  ];
   const hoods = hoodSlugs.map(getNeighborhood).filter(Boolean);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${absoluteUrl(`/${locale}/sell`)}#webpage`,
+        url: absoluteUrl(`/${locale}/sell`),
+        name: "Sell NYC Property",
+        description: sellDirectAnswer,
+        dateModified: sellUpdatedAt,
+        inLanguage: locale,
+        author: { "@type": "Person", name: siteConfig.name },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${absoluteUrl(`/${locale}/sell`)}#faq`,
+        mainEntity: sellFaqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      },
+      breadcrumbJsonLd(locale, [
+        { name: "Home", path: "/" },
+        { name: "Sell", path: "/sell" },
+      ]),
+    ],
+  };
 
   return (
     <main className="bg-[var(--paper)]">
-      <section className="relative -mt-[72px] bg-[var(--navy)] px-5 pb-16 pt-32 text-white max-sm:pb-14 max-sm:pt-28 sm:pb-24 sm:pt-36">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <TypeHero kicker={t("eyebrow")} title={t("title")} dek={t("body")} cta={{ href: "/?segment=seller#strategy", label: t("cta") }} />
+
+      <section className="border-b border-[var(--line)] bg-white px-5 py-12 lg:px-8">
         <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[.2em] text-[var(--platinum)]">{t("eyebrow")}</p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-[-.055em] max-sm:text-[2.15rem] sm:text-7xl">{t("title")}</h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-white/70">{t("body")}</p>
-          <Link
-            href="/#strategy"
-            className="mt-9 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[var(--navy)]"
-          >
-            {t("cta")} <ArrowRight className="size-4" />
-          </Link>
+          <PageBreadcrumbs
+            items={[
+              { href: "/", label: "Home" },
+              { href: "/sell", label: "Sell" },
+            ]}
+          />
         </div>
       </section>
+
+      <section className="border-b border-[var(--line)] bg-white px-5 py-14 lg:px-8">
+        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+          <div>
+            <p className="kicker">{t("directAnswer")}</p>
+            <p className="mt-4 text-sm text-neutral-500">
+              Updated {formatUpdated(sellUpdatedAt, locale)} · {siteConfig.name}
+            </p>
+          </div>
+          <p className="text-lg leading-8 text-ink">{sellDirectAnswer}</p>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-5xl px-5 py-20">
-        <Reveal className="rounded-3xl border border-[var(--line)] bg-[var(--navy-soft)] p-8">
-          <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--navy)]">{t("directAnswer")}</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-.035em]">{t("worthTitle")}</h2>
-          <p className="mt-5 text-lg leading-8 text-neutral-700">
-            Its market value is the price qualified buyers are likely to support after comparing it with relevant recent
-            sales and current competition. Floor, light, view, condition, layout, monthly carrying costs, building
-            finances and buyer demand can materially change the result.
-          </p>
+        <Reveal>
+          <h2 className="text-3xl">{t("worthTitle")}</h2>
+          <p className="mt-5 text-lg leading-8 text-neutral-700">{sellDirectAnswer}</p>
           <Link
             href="/guides/nyc-apartment-worth"
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
@@ -84,49 +123,76 @@ export default async function SellPage({ params }: Props) {
             Read the full answer guide <ArrowRight className="size-4" />
           </Link>
         </Reveal>
-        <Stagger className="mt-14 grid gap-5 md:grid-cols-2">
-          {steps.map(({ icon: Icon, title, text }) => (
-            <article key={title} className="rounded-3xl border border-[var(--line)] bg-white p-7">
-              <Icon className="size-7 text-[var(--navy)]" />
-              <h3 className="mt-5 text-xl font-semibold">{title}</h3>
-              <p className="mt-3 leading-7 text-neutral-600">{text}</p>
-            </article>
-          ))}
-        </Stagger>
-        <Reveal className="mt-16 grid gap-10 border-t border-[var(--line)] pt-14 lg:grid-cols-[.7fr_1.3fr]">
-          <div>
-            <Scale className="size-8 text-[var(--navy)]" />
-            <h2 className="mt-4 text-3xl font-semibold">{t("sellerGuides")}</h2>
+
+        <Reveal className="mt-14">
+          <h2 className="text-3xl">Who it fits</h2>
+          <ul className="mt-6 grid gap-3">
+            {sellWhoItFits.map((item) => (
+              <li key={item} className="border-t border-[var(--line)] pt-3 text-lg leading-8 text-neutral-700">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className="mt-14">
+          <h2 className="text-3xl">How a NYC sale actually works</h2>
+          <Stagger className="mt-8 divide-y border-y border-[var(--line)]">
+            {sellSteps.map((step, index) => (
+              <article key={step.title} className="grid gap-2 py-6 sm:grid-cols-[4rem_1fr]">
+                <span className="kicker text-navy">0{index + 1}</span>
+                <div>
+                  <h3 className="font-display text-2xl">{step.title}</h3>
+                  <p className="mt-2 leading-7 text-neutral-600">{step.text}</p>
+                </div>
+              </article>
+            ))}
+          </Stagger>
+        </Reveal>
+
+        <Reveal className="mt-14">
+          <h2 className="text-3xl">Common mistakes</h2>
+          <ul className="mt-6 grid gap-3">
+            {sellMistakes.map((item) => (
+              <li key={item} className="border-t border-[var(--line)] pt-3 text-lg leading-8 text-neutral-700">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className="mt-14">
+          <h2 className="text-3xl">Seller FAQs</h2>
+          <div className="mt-8">
+            <FaqAccordion items={[...sellFaqs]} />
           </div>
-          <ul className="grid gap-4">
+        </Reveal>
+
+        <Reveal className="mt-16 border-t border-[var(--line)] pt-14">
+          <h2 className="text-3xl">{t("sellerGuides")}</h2>
+          <ul className="mt-6 grid gap-3">
             {guideLinks.map((g) => (
               <li key={g.href}>
-                <Link href={g.href} className="text-lg font-medium text-[var(--ink)] hover:underline">
+                <Link href={g.href} className="font-display text-xl hover:underline">
                   {tNav(g.labelKey)}
                 </Link>
               </li>
             ))}
           </ul>
         </Reveal>
+
         <Reveal className="mt-16 border-t border-[var(--line)] pt-14">
-          <h2 className="text-2xl font-semibold">{t("exploreNeighborhoods")}</h2>
+          <h2 className="text-2xl">{t("exploreNeighborhoods")}</h2>
           <p className="mt-3 text-neutral-600">{t("exploreNeighborhoodsBody")}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
             {hoods.map((hood) =>
               hood ? (
-                <Link
-                  key={hood.slug}
-                  href={`/neighborhoods/${hood.slug}`}
-                  className="rounded-full border border-[var(--line)] px-4 py-2 text-sm font-medium transition hover:border-[var(--navy)]"
-                >
+                <Link key={hood.slug} href={`/neighborhoods/${hood.slug}`} className="font-display text-xl">
                   {hood.name}
                 </Link>
               ) : null,
             )}
-            <Link
-              href="/neighborhoods"
-              className="rounded-full bg-[var(--navy)] px-4 py-2 text-sm font-medium text-white"
-            >
+            <Link href="/neighborhoods" className="text-sm font-semibold">
               {t("allNeighborhoods")}
             </Link>
           </div>

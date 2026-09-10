@@ -43,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPaths.flatMap(({ path, changeFrequency, priority }) =>
       localizedEntry(path, {
-        lastModified: new Date("2026-07-24"),
+        lastModified: new Date("2026-09-10"),
         changeFrequency,
         priority,
       }),

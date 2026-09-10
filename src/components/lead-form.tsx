@@ -69,8 +69,8 @@ export function LeadForm() {
   return (
     <div className="grid gap-10 max-[900px]:grid-cols-1 max-sm:gap-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-[70px]">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">{t("getStarted")}</p>
-        <h2 className="mt-4 text-5xl font-semibold leading-[1.03] tracking-[-0.045em] max-[600px]:text-[37px]">
+        <p className="kicker">{t("getStarted")}</p>
+        <h2 className="mt-4 text-5xl leading-[1.03] tracking-[-0.045em] max-[600px]:text-[37px]">
           {t("title")}
         </h2>
         <p className="mt-4 leading-7 text-neutral-600">{t("body")}</p>
@@ -108,8 +108,8 @@ export function LeadForm() {
         {result ? (
           <div className="grid min-h-[280px] place-items-center text-center max-sm:min-h-[240px] sm:min-h-[360px]">
             <div>
-              <CheckCircle2 className="mx-auto size-12 text-[var(--navy)]" />
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">{t("youreSet")}</p>
+              <CheckCircle2 className="mx-auto size-12 text-navy" />
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-platinum">{t("youreSet")}</p>
               <strong className="mt-3 block text-[28px] max-sm:text-2xl">{t("thanksTitle")}</strong>
               <p className="mt-3 max-w-md text-neutral-600">
                 Recommended next step: {result.nextAction || "schedule a pricing and property review."}

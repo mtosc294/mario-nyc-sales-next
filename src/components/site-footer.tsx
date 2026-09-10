@@ -6,11 +6,11 @@ export async function SiteFooter() {
   const t = await getTranslations("Footer");
   const license = licenseLabel();
   return (
-    <footer className="bg-[var(--navy)] px-5 py-14 text-[var(--platinum)]">
+    <footer className="bg-[var(--navy)] px-5 py-14 text-platinum">
       <div className="mx-auto flex w-[min(1180px,calc(100%-40px))] flex-col gap-8 max-sm:w-[min(100%-28px,1180px)] md:flex-row md:items-start md:justify-between">
         <div>
-          <strong className="text-white">{siteConfig.name}</strong>
-          <p className="mt-3 max-w-sm text-sm leading-6 text-[var(--platinum)]">{t("tagline")}</p>
+          <strong className="font-display text-xl tracking-[-0.03em] text-white">{siteConfig.name}</strong>
+          <p className="mt-3 max-w-sm text-sm leading-6 text-platinum">{t("tagline")}</p>
           <p className="mt-2 max-w-sm text-xs leading-5 text-white/50">{advisorSubtitle()}</p>
           {license && <p className="mt-1 text-xs text-white/50">{license}</p>}
           <p className="mt-4 grid gap-1 text-sm">

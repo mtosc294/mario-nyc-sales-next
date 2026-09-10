@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -5,10 +7,28 @@ import { Analytics } from "@/components/analytics";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { absoluteUrl, siteConfig } from "@/lib/site-config";
+import { pageAlternates, personJsonLd } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
+
+const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   params: Promise<{ locale: string }>;
 };
 
@@ -22,11 +42,7 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: { default: t("titleDefault"), template: `%s | ${siteConfig.name}` },
     description: t("description"),
-    alternates: {
-      languages: Object.fromEntries(
-        routing.locales.map((l) => [l, absoluteUrl(`/${l}`)]),
-      ),
-    },
+    alternates: pageAlternates(locale, "/"),
   };
 }
 
@@ -47,17 +63,14 @@ export default async function LocaleLayout({ children, params }: Props) {
         name: `${siteConfig.name} NYC Real Estate`,
         description: siteConfig.description,
         inLanguage: locale,
+        publisher: { "@id": absoluteUrl(`/${locale}#business`) },
       },
       {
-        "@type": "Person",
-        "@id": absoluteUrl(`/${locale}#mario`),
-        name: siteConfig.name,
-        jobTitle: siteConfig.jobTitle,
-        url: absoluteUrl(`/${locale}`),
-        email: siteConfig.email,
-        telephone: siteConfig.phone,
-        worksFor: { "@id": absoluteUrl(`/${locale}#business`) },
+        "@type": "Organization",
+        "@id": absoluteUrl(`/${locale}#brokerage`),
+        name: siteConfig.brokerage,
       },
+      personJsonLd(locale),
       {
         "@type": "RealEstateAgent",
         "@id": absoluteUrl(`/${locale}#business`),
@@ -65,10 +78,18 @@ export default async function LocaleLayout({ children, params }: Props) {
         url: absoluteUrl(`/${locale}`),
         email: siteConfig.email,
         telephone: siteConfig.phone,
-        areaServed: siteConfig.areaServed.map((name) => ({
-          "@type": "AdministrativeArea",
-          name,
-        })),
+        parentOrganization: { "@id": absoluteUrl(`/${locale}#brokerage`) },
+        areaServed: [
+          {
+            "@type": "City",
+            name: "New York City",
+            containedInPlace: { "@type": "State", name: "New York" },
+          },
+          ...siteConfig.areaServed.map((name) => ({
+            "@type": "AdministrativeArea",
+            name,
+          })),
+        ],
         employee: { "@id": absoluteUrl(`/${locale}#mario`) },
         description: `Licensed Real Estate Salesperson sponsored by ${siteConfig.brokerage}.`,
       },
@@ -76,7 +97,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   };
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className={cn(plexSans.variable, newsreader.variable)} suppressHydrationWarning>
       <body>
         <Analytics />
         <NextIntlClientProvider messages={messages}>

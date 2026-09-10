@@ -34,7 +34,7 @@ export function StickyConsultCta({ href, label }: Props) {
       )}
     >
       {label}
-      <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs text-[var(--platinum)]">
+      <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs text-platinum">
         Consult <ArrowRight className="size-3.5" />
       </span>
     </Link>

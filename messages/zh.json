@@ -55,10 +55,12 @@
     "it": "Italiano"
   },
   "Hero": {
-    "headline": "找到梦想之家，从未如此简单",
+    "headline": "为业主、买家与投资者提供纽约销售指导",
+    "dek": "给大楼定价。不是给宣传册定价。",
     "buy": "购房",
     "sell": "售房",
-    "invest": "投资"
+    "invest": "投资",
+    "consult": "申请个性化指导"
   },
   "Home": {
     "howToStart": "如何开始",
@@ -84,11 +86,15 @@
     "viewAll": "查看全部纽约社区",
     "guides": "指南",
     "guidesTitle": "对卡住交易的问题给出清晰回答。",
+    "guidesBody": "每篇指南先给出直接答案，再给出纽约具体步骤与下一步。",
+    "sellerKicker": "卖方",
+    "sellerTitle": "你的纽约物业能卖多少？",
+    "sellerBody": "真正的估值看近期成交、在售竞争、月费、楼况、装修、楼层、采光、景观，以及现在谁在买。",
+    "sellerCta": "获取个性化估值",
     "strategy": "策略",
     "getStarted": "开始",
-    "proofBoroughs": "覆盖行政区",
-    "proofPaths": "清晰路径",
-    "proofGuides": "社区指南"
+    "proofKicker": "覆盖范围",
+    "proofLine": "从曼哈顿到斯塔滕岛。Condo、Co-op、联排别墅。"
   },
   "Buy": {
     "eyebrow": "购房顾问",
@@ -130,6 +136,7 @@
     "title": "先验证投资逻辑，再爱上资产。",
     "body": "在投入时间或资本前，对收入、支出、融资、翻新、监管与退出价值使用一致假设。",
     "cta": "定义投资逻辑",
+    "directAnswer": "直接回答",
     "exploreNeighborhoods": "探索社区",
     "allNeighborhoods": "全部社区"
   },

@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { ArrowRight, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { guides } from "@/lib/guides";
 import { ctaHref, ctaLabel, getNeighborhood, neighborhoods } from "@/lib/neighborhoods";
 import { absoluteUrl } from "@/lib/site-config";
+import { breadcrumbJsonLd, metaDescription, pageAlternates } from "@/lib/seo";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 import { Reveal, Stagger } from "@/components/motion/reveal";
 import { FaqAccordion } from "@/components/motion/faq-accordion";
+import { TypeHero } from "@/components/type-hero";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -17,15 +19,16 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const hood = getNeighborhood(slug);
   if (!hood) return {};
   return {
     title: `${hood.name} Real Estate Guide`,
-    description: hood.directAnswer.slice(0, 155),
+    description: metaDescription(hood.directAnswer),
+    alternates: pageAlternates(locale, `/neighborhoods/${slug}`),
     openGraph: {
       title: `${hood.name} Real Estate | ${hood.borough}, NYC`,
-      description: hood.summary,
+      description: metaDescription(hood.directAnswer),
     },
   };
 }
@@ -82,6 +85,11 @@ export default async function NeighborhoodPage({ params }: Props) {
         author: { "@type": "Person", name: hood.author },
         about: { "@id": `${absoluteUrl(`/neighborhoods/${hood.slug}`)}#place` },
       },
+      breadcrumbJsonLd(locale, [
+        { name: "Home", path: "/" },
+        { name: "Neighborhoods", path: "/neighborhoods" },
+        { name: hood.name, path: `/neighborhoods/${hood.slug}` },
+      ]),
     ],
   };
 
@@ -89,29 +97,33 @@ export default async function NeighborhoodPage({ params }: Props) {
     <main className="bg-[var(--paper)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="relative -mt-[72px] min-h-[calc(440px+72px)] overflow-hidden bg-[var(--navy)] text-white max-sm:min-h-[calc(360px+72px)]">
-        <Image src={hood.image} alt={`${hood.name} illustrated skyline`} fill priority className="object-cover opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)] via-[color-mix(in_srgb,var(--navy)_55%,transparent)] to-transparent" />
-        <div className="relative mx-auto flex min-h-[calc(440px+72px)] max-w-6xl items-end px-5 pb-12 pt-32 max-sm:min-h-[calc(360px+72px)] max-sm:pb-10 max-sm:pt-28 lg:px-8 lg:pb-16">
-          <div>
-            <p className="text-xs uppercase tracking-[.2em] text-[var(--platinum)]">
-              {hood.borough} neighborhood guide
-            </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-[-.055em] max-sm:text-[2.15rem] sm:text-7xl">{hood.name}</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">{hood.summary}</p>
-            <p className="mt-4 text-sm text-white/50">
-              Updated {formatUpdated(hood.updatedAt)} · Reviewed by {hood.author}
-            </p>
-          </div>
+      <TypeHero
+        kicker={`${hood.borough} neighborhood guide`}
+        title={hood.name}
+        dek={hood.summary}
+      />
+
+      <section className="border-b border-[var(--line)] bg-white px-5 py-8 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <PageBreadcrumbs
+            items={[
+              { href: "/", label: "Home" },
+              { href: "/neighborhoods", label: "Neighborhoods" },
+              { href: `/neighborhoods/${hood.slug}`, label: hood.name },
+            ]}
+          />
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-12 px-5 py-16 lg:grid-cols-[1.2fr_.8fr] lg:px-8">
         <div>
-          <Reveal className="rounded-3xl border border-[var(--line)] bg-[var(--navy-soft)] p-8">
-            <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--navy)]">Direct answer</p>
-            <p className="mt-4 text-lg leading-8 text-[var(--ink)]">{hood.directAnswer}</p>
-          </Reveal>
+          <div className="border-t border-[var(--line)] pt-8">
+            <p className="kicker text-navy">Direct answer</p>
+            <p className="mt-3 text-sm text-neutral-500">
+              Updated {formatUpdated(hood.updatedAt)} · Reviewed by {hood.author}
+            </p>
+            <p className="mt-4 text-lg leading-8 text-ink">{hood.directAnswer}</p>
+          </div>
 
           <Reveal as="div" className="mt-14">
             <h2 className="text-3xl font-semibold tracking-[-.03em]">What this market is</h2>
@@ -122,9 +134,8 @@ export default async function NeighborhoodPage({ params }: Props) {
             <h2 className="text-3xl font-semibold tracking-[-.03em]">Who it fits</h2>
             <Stagger as="ul" className="mt-6 grid gap-3">
               {hood.whoItFits.map((item) => (
-                <li key={item} className="flex gap-3 rounded-2xl border border-[var(--line)] bg-white p-5">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[var(--navy)]" />
-                  <p className="leading-7 text-neutral-700">{item}</p>
+                <li key={item} className="border-t border-[var(--line)] pt-3 leading-7 text-neutral-700">
+                  {item}
                 </li>
               ))}
             </Stagger>
@@ -134,10 +145,7 @@ export default async function NeighborhoodPage({ params }: Props) {
             <h2 className="text-3xl font-semibold tracking-[-.03em]">Property types</h2>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {hood.propertyTypes.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-2xl border border-[var(--line)] bg-white p-5 font-medium text-[var(--ink)]"
-                >
+                <li key={item} className="border-t border-[var(--line)] pt-3 font-medium text-ink">
                   {item}
                 </li>
               ))}
@@ -146,10 +154,10 @@ export default async function NeighborhoodPage({ params }: Props) {
 
           <div className="mt-14">
             <h2 className="text-3xl font-semibold tracking-[-.03em]">NYC-specific steps</h2>
-            <Stagger as="ol" className="mt-6 grid gap-4">
+            <Stagger as="ol" className="mt-6 list-none divide-y border-y border-[var(--line)] p-0">
               {hood.steps.map((step, index) => (
-                <li key={step} className="flex gap-4 rounded-2xl border border-[var(--line)] bg-white p-5">
-                  <span className="text-sm font-semibold text-[var(--platinum)]">0{index + 1}</span>
+                <li key={step} className="grid gap-2 py-5 sm:grid-cols-[4rem_1fr]">
+                  <span className="kicker text-navy">0{index + 1}</span>
                   <p className="leading-7 text-neutral-700">{step}</p>
                 </li>
               ))}
@@ -160,9 +168,8 @@ export default async function NeighborhoodPage({ params }: Props) {
             <h2 className="text-3xl font-semibold tracking-[-.03em]">Common mistakes</h2>
             <ul className="mt-6 grid gap-3">
               {hood.commonMistakes.map((item) => (
-                <li key={item} className="flex gap-3 rounded-2xl border border-[var(--line)] bg-white p-5">
-                  <XCircle className="mt-0.5 size-5 shrink-0 text-[var(--navy)]" />
-                  <p className="leading-7 text-neutral-700">{item}</p>
+                <li key={item} className="border-t border-[var(--line)] pt-3 leading-7 text-neutral-700">
+                  {item}
                 </li>
               ))}
             </ul>
@@ -178,7 +185,7 @@ export default async function NeighborhoodPage({ params }: Props) {
             <ul className="mt-6 grid gap-4">
               {hood.sources.map((source) => (
                 <li key={source.label} className="rounded-2xl border border-[var(--line)] bg-white p-5">
-                  <p className="font-semibold text-[var(--ink)]">{source.label}</p>
+                  <p className="font-semibold text-ink">{source.label}</p>
                   <p className="mt-2 text-sm leading-6 text-neutral-600">{source.note}</p>
                 </li>
               ))}
@@ -191,13 +198,15 @@ export default async function NeighborhoodPage({ params }: Props) {
         </div>
 
         <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-          <div className="rounded-3xl bg-[var(--navy)] p-7 text-white">
-            <p className="text-xs uppercase tracking-[.2em] text-[var(--platinum)]">Market snapshot</p>
-            <strong className="mt-4 block text-3xl">{hood.medianLabel}</strong>
-            <p className="mt-3 text-sm leading-6 text-white/55">{hood.methodologyNote}</p>
+          <div className="rounded-none border border-[var(--line)] bg-[var(--navy)] p-7 text-white">
+            <p className="kicker">How to read this market</p>
+            <p className="mt-4 text-sm leading-6 text-white/70">{hood.methodologyNote}</p>
+            <p className="mt-4 text-xs leading-5 text-platinum">
+              {hood.medianLabel} — indicative context only, not a live comp set.
+            </p>
             <Link
               href={ctaHref(hood.primaryCta)}
-              className="mt-7 inline-flex items-center gap-2 rounded-full border border-[var(--platinum)]/40 bg-white px-5 py-3 text-sm font-semibold text-[var(--navy)] transition hover:-translate-y-0.5"
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy"
             >
               {ctaLabel(hood.primaryCta, hood.name)} <ArrowRight className="size-4" />
             </Link>
@@ -205,13 +214,13 @@ export default async function NeighborhoodPage({ params }: Props) {
 
           {relatedGuideList.length > 0 && (
             <Reveal className="rounded-3xl border border-[var(--line)] bg-white p-7">
-              <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--platinum)]">Related guides</p>
+              <p className="text-xs font-semibold uppercase tracking-[.2em] text-platinum">Related guides</p>
               <ul className="mt-5 grid gap-3">
                 {relatedGuideList.map((guide) => (
                   <li key={guide.slug}>
                     <Link
                       href={`/guides/${guide.slug}`}
-                      className="group flex items-center justify-between gap-3 font-medium text-[var(--ink)]"
+                      className="group flex items-center justify-between gap-3 font-medium text-ink"
                     >
                       <span>{guide.title}</span>
                       <ArrowRight className="size-4 shrink-0 transition group-hover:translate-x-1" />
@@ -224,7 +233,7 @@ export default async function NeighborhoodPage({ params }: Props) {
 
           {relatedHoods.length > 0 && (
             <Reveal className="rounded-3xl border border-[var(--line)] bg-white p-7">
-              <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--platinum)]">
+              <p className="text-xs font-semibold uppercase tracking-[.2em] text-platinum">
                 Related neighborhoods
               </p>
               <ul className="mt-5 grid gap-3">
@@ -235,7 +244,7 @@ export default async function NeighborhoodPage({ params }: Props) {
                       className="group flex items-center justify-between gap-3"
                     >
                       <span>
-                        <span className="block font-medium text-[var(--ink)]">{related.name}</span>
+                        <span className="block font-medium text-ink">{related.name}</span>
                         <span className="text-sm text-neutral-500">{related.borough}</span>
                       </span>
                       <ArrowRight className="size-4 shrink-0 transition group-hover:translate-x-1" />
@@ -245,7 +254,7 @@ export default async function NeighborhoodPage({ params }: Props) {
               </ul>
               <Link
                 href="/neighborhoods"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--ink)]"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ink"
               >
                 All NYC neighborhoods <ArrowRight className="size-4" />
               </Link>

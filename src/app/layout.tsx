@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     url: absoluteUrl("/"),
   },
   twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

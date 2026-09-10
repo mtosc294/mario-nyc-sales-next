@@ -55,10 +55,12 @@
     "it": "Italiano"
   },
   "Hero": {
-    "headline": "Trovare la casa dei sogni non è mai stato così facile",
+    "headline": "Consulenza vendite a NYC per proprietari, acquirenti e investitori",
+    "dek": "Prezza l'edificio. Non la brochure.",
     "buy": "Compra",
     "sell": "Vendi",
-    "invest": "Investi"
+    "invest": "Investi",
+    "consult": "Richiedi una guida personalizzata"
   },
   "Home": {
     "howToStart": "Come iniziare",
@@ -84,11 +86,15 @@
     "viewAll": "Vedi tutti i quartieri di NYC",
     "guides": "Guide",
     "guidesTitle": "Risposte chiare alle domande che bloccano le trattative.",
+    "guidesBody": "Ogni guida apre con una risposta diretta, poi passi specifici di NYC e un'azione successiva.",
+    "sellerKicker": "Per i venditori",
+    "sellerTitle": "Quanto potrebbe vendere il tuo immobile a NYC?",
+    "sellerBody": "Una valutazione reale guarda vendite recenti, concorrenza, costi mensili, edificio, condizione, piano, luce, vista e chi sta comprando ora.",
+    "sellerCta": "Richiedi una valutazione personalizzata",
     "strategy": "Strategia",
     "getStarted": "Inizia",
-    "proofBoroughs": "Distretti serviti",
-    "proofPaths": "Percorsi chiari",
-    "proofGuides": "Guide ai quartieri"
+    "proofKicker": "Territorio",
+    "proofLine": "Da Manhattan a Staten Island. Condo, co-op, townhouse."
   },
   "Buy": {
     "eyebrow": "Consulenza acquirente",
@@ -130,6 +136,7 @@
     "title": "Valuta la tesi prima di innamorarti dell'asset.",
     "body": "Usa ipotesi coerenti su reddito, spese, finanziamento, ristrutturazione, regolamentazione e valore di uscita prima di impegnare tempo o capitale.",
     "cta": "Definisci una tesi di investimento",
+    "directAnswer": "Risposta diretta",
     "exploreNeighborhoods": "Esplora i quartieri",
     "allNeighborhoods": "Tutti i quartieri"
   },

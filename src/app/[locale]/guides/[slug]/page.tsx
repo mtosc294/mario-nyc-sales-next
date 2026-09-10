@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { ArrowRight, XCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getGuide, guides } from "@/lib/guides";
 import { ctaHref, getNeighborhood } from "@/lib/neighborhoods";
 import { absoluteUrl, siteConfig } from "@/lib/site-config";
+import { breadcrumbJsonLd, metaDescription, pageAlternates } from "@/lib/seo";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 import { Reveal, Stagger } from "@/components/motion/reveal";
 import { FaqAccordion } from "@/components/motion/faq-accordion";
 import { StickyConsultCta } from "@/components/motion/sticky-consult-cta";
@@ -17,13 +19,14 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const guide = getGuide(slug);
   if (!guide) return {};
   return {
     title: guide.title,
-    description: guide.excerpt,
-    openGraph: { title: guide.title, description: guide.excerpt },
+    description: metaDescription(guide.directAnswer),
+    alternates: pageAlternates(locale, `/guides/${slug}`),
+    openGraph: { title: guide.title, description: metaDescription(guide.directAnswer) },
   };
 }
 
@@ -83,6 +86,10 @@ export default async function GuidePage({ params }: Props) {
           acceptedAnswer: { "@type": "Answer", text: faq.a },
         })),
       },
+      breadcrumbJsonLd(locale, [
+        { name: "Home", path: "/" },
+        { name: guide.title, path: `/guides/${guide.slug}` },
+      ]),
     ],
   };
 
@@ -95,17 +102,23 @@ export default async function GuidePage({ params }: Props) {
       <StickyConsultCta href={ctaLink} label={ctaLabel} />
 
       <article className="mx-auto max-w-4xl px-5 py-20">
-        <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--navy)]/70">
+        <PageBreadcrumbs
+          items={[
+            { href: "/", label: "Home" },
+            { href: `/guides/${guide.slug}`, label: guide.title },
+          ]}
+        />
+        <p className="mt-8 text-xs font-semibold uppercase tracking-[.2em] text-navy/70">
           NYC sales guide · Updated {formatUpdated(guide.updatedAt)}
         </p>
-        <h1 className="mt-5 text-5xl font-semibold tracking-[-.055em] text-[var(--ink)] sm:text-6xl">
+        <h1 className="font-display mt-5 text-5xl tracking-[-.055em] text-ink sm:text-6xl">
           {guide.title}
         </h1>
         <p className="mt-6 text-xl leading-9 text-neutral-600">{guide.excerpt}</p>
 
         <Reveal className="mt-12 rounded-3xl border border-[var(--line)] bg-[var(--navy-soft)] p-8">
-          <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--navy)]">Direct answer</p>
-          <p className="mt-4 text-lg leading-8 text-[var(--ink)]">{guide.directAnswer}</p>
+          <p className="text-xs font-semibold uppercase tracking-[.2em] text-navy">Direct answer</p>
+          <p className="mt-4 text-lg leading-8 text-ink">{guide.directAnswer}</p>
         </Reveal>
 
         <Reveal as="section" className="mt-12">
@@ -115,13 +128,10 @@ export default async function GuidePage({ params }: Props) {
 
         <section className="mt-12">
           <h2 className="text-3xl font-semibold">Practical steps</h2>
-          <Stagger as="ol" className="mt-6 grid gap-4">
+          <Stagger as="ol" className="mt-6 list-none divide-y border-y border-[var(--line)] p-0">
             {guide.steps.map((step, index) => (
-              <li
-                key={step}
-                className="flex gap-4 rounded-2xl border border-[var(--line)] bg-white p-5 transition hover:-translate-y-0.5"
-              >
-                <span className="text-sm font-semibold text-[var(--platinum)]">0{index + 1}</span>
+              <li key={step} className="grid gap-2 py-5 sm:grid-cols-[4rem_1fr]">
+                <span className="kicker text-navy">0{index + 1}</span>
                 <p className="leading-7 text-neutral-700">{step}</p>
               </li>
             ))}
@@ -132,9 +142,8 @@ export default async function GuidePage({ params }: Props) {
           <h2 className="text-3xl font-semibold">Common mistakes</h2>
           <ul className="mt-6 grid gap-3">
             {guide.commonMistakes.map((item) => (
-              <li key={item} className="flex gap-3 rounded-2xl border border-[var(--line)] bg-white p-5">
-                <XCircle className="mt-0.5 size-5 shrink-0 text-[var(--navy)]" />
-                <p className="leading-7 text-neutral-700">{item}</p>
+              <li key={item} className="border-t border-[var(--line)] pt-3 leading-7 text-neutral-700">
+                {item}
               </li>
             ))}
           </ul>
@@ -161,7 +170,7 @@ export default async function GuidePage({ params }: Props) {
           <Reveal as="section" className="mt-12 grid gap-8 border-t border-[var(--line)] pt-10 sm:grid-cols-2">
             {relatedGuides.length > 0 && (
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--platinum)]">
+                <p className="text-xs font-semibold uppercase tracking-[.2em] text-platinum">
                   Related guides
                 </p>
                 <ul className="mt-4 grid gap-3">
@@ -177,7 +186,7 @@ export default async function GuidePage({ params }: Props) {
             )}
             {relatedHoods.length > 0 && (
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--platinum)]">
+                <p className="text-xs font-semibold uppercase tracking-[.2em] text-platinum">
                   Related neighborhoods
                 </p>
                 <ul className="mt-4 grid gap-3">
@@ -201,7 +210,7 @@ export default async function GuidePage({ params }: Props) {
 
         <Link
           href={ctaLink}
-          className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--navy)] px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5"
+          className="mt-10 inline-flex min-h-12 items-center gap-2 rounded-full bg-navy px-6 py-3 font-semibold text-white"
         >
           {ctaLabel} <ArrowRight className="size-4" />
         </Link>

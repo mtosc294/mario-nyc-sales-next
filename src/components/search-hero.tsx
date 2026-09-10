@@ -60,7 +60,7 @@ export function SearchHero() {
   }, []);
 
   return (
-    <section className="relative -mt-[72px] min-h-[100svh] overflow-hidden bg-zinc-950 text-white max-sm:min-h-[min(100svh,640px)] min-[601px]:min-h-[calc(720px+72px)]">
+    <section className="relative -mt-[72px] min-h-[100svh] overflow-hidden bg-[var(--navy)] text-white max-sm:min-h-[min(100svh,640px)]">
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <video
           ref={videoRef}
@@ -76,20 +76,28 @@ export function SearchHero() {
           className="absolute inset-0 bg-center bg-cover min-[601px]:hidden"
           style={{ backgroundImage: "url(/video/hero-poster.jpg)" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/75 via-[color-mix(in_srgb,var(--navy)_35%,transparent)] to-[var(--navy)]/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/80 via-[color-mix(in_srgb,var(--navy)_40%,transparent)] to-[var(--navy)]/20" />
       </div>
-      <div className="relative z-[2] mx-auto flex min-h-[100svh] w-[min(1180px,calc(100%-40px))] flex-col items-center justify-center px-2 pb-[70px] pt-[142px] text-center max-sm:min-h-[min(100svh,640px)] max-sm:w-[min(100%-28px,1180px)] max-sm:px-1 max-sm:pb-16 max-sm:pt-28 min-[601px]:min-h-[calc(720px+72px)]">
+      <div className="relative z-[2] mx-auto flex min-h-[100svh] w-[min(1180px,calc(100%-40px))] flex-col justify-end px-2 pb-16 pt-[142px] max-sm:min-h-[min(100svh,640px)] max-sm:w-[min(100%-28px,1180px)] max-sm:px-1 max-sm:pb-14 max-sm:pt-28 min-[601px]:min-h-[100svh]">
         <h1
           className={cn(
-            "hero-enter m-0 mx-auto max-w-[900px] text-[70px] font-semibold leading-[0.97] tracking-[-0.055em] text-shadow-hero max-[900px]:text-[50px] max-[600px]:text-[clamp(2rem,9vw,2.7rem)]",
+            "hero-enter font-display m-0 max-w-[14ch] text-[clamp(2.4rem,8vw,5.5rem)] leading-[0.95] tracking-[-0.055em] text-shadow-hero",
             entered && "hero-enter-in",
           )}
         >
           {t("headline")}
         </h1>
+        <p
+          className={cn(
+            "hero-enter hero-enter-delay mt-6 max-w-xl text-base leading-7 text-white/80 sm:text-lg",
+            entered && "hero-enter-in",
+          )}
+        >
+          {t("dek")}
+        </p>
         <div
           className={cn(
-            "hero-enter hero-enter-delay mt-8 flex w-full max-w-[720px] flex-col gap-3 max-sm:mt-8 sm:mt-10 sm:flex-row sm:justify-center",
+            "hero-enter hero-enter-delay mt-10 flex w-full max-w-[640px] flex-col gap-3 sm:flex-row",
             entered && "hero-enter-in",
           )}
         >
@@ -97,12 +105,21 @@ export function SearchHero() {
             <Link
               key={cta.href}
               href={cta.href}
-              className="inline-flex min-h-[52px] w-full flex-1 items-center justify-center border border-white/55 bg-white/15 px-6 text-sm font-bold uppercase tracking-[0.06em] text-white backdrop-blur-[2px] transition hover:bg-white/25"
+              className="inline-flex min-h-[52px] w-full flex-1 items-center justify-center border border-white/55 bg-white/10 px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-[2px] transition hover:bg-white/20"
             >
               {cta.label}
             </Link>
           ))}
         </div>
+        <Link
+          href="/#strategy"
+          className={cn(
+            "hero-enter hero-enter-delay-2 mt-6 inline-flex text-sm font-medium text-white/80 underline-offset-4 hover:underline",
+            entered && "hero-enter-in",
+          )}
+        >
+          {t("consult")}
+        </Link>
       </div>
     </section>
   );

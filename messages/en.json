@@ -2,7 +2,7 @@
   "Meta": {
     "titleDefault": "Mario Toscano | NYC Sales Advisor",
     "titleTemplate": "{title} | Mario Toscano",
-    "description": "NYC sales guidance for owners, buyers, and investors—neighborhood answers, seller strategy, and a clear next step."
+    "description": "NYC sales guidance for owners, buyers, and investors. Neighborhood answers, seller strategy, and one clear next step from Mario Toscano, licensed salesperson sponsored by Pierre Michel."
   },
   "Nav": {
     "buy": "Buy",
@@ -55,10 +55,12 @@
     "it": "Italiano"
   },
   "Hero": {
-    "headline": "Finding your dream home has never been so easy",
+    "headline": "NYC sales guidance for owners, buyers, and investors",
+    "dek": "Price the building. Not the brochure.",
     "buy": "Buy",
     "sell": "Sell",
-    "invest": "Invest"
+    "invest": "Invest",
+    "consult": "Request personalized guidance"
   },
   "Home": {
     "howToStart": "How to start",
@@ -77,18 +79,22 @@
     "startHere": "Start here →",
     "howWeWork": "How we work together",
     "howWeWorkTitle": "From first conversation to closing—with one advisor guiding the way.",
-    "howWeWorkBody": "You bring the goal. I bring the market context, pricing judgment, and a plan you can act on with confidence.",
+    "howWeWorkBody": "You bring the goal. I bring the market context, pricing judgment, and one next step you can act on—from first conversation through closing.",
     "neighborhoods": "Neighborhoods",
     "neighborhoodsTitle": "Explore NYC the way people actually search it.",
     "neighborhoodsBody": "Local answers, property-type guidance, and a path that matches your goal—buying, selling, or investing in that area.",
     "viewAll": "View all NYC neighborhoods",
     "guides": "Guides",
     "guidesTitle": "Clear answers to the questions that stop deals.",
+    "guidesBody": "Each guide opens with a direct answer, then NYC-specific steps and a next action.",
+    "sellerKicker": "For sellers",
+    "sellerTitle": "What could your NYC property sell for?",
+    "sellerBody": "A real valuation looks at recent sales, current competition, monthly costs, building health, condition, floor, light, view, and who’s buying now.",
+    "sellerCta": "Get a personalized valuation",
     "strategy": "Strategy",
     "getStarted": "Get started",
-    "proofBoroughs": "Boroughs served",
-    "proofPaths": "Clear paths",
-    "proofGuides": "Neighborhood guides"
+    "proofKicker": "Territory",
+    "proofLine": "Manhattan through Staten Island. Condo, co-op, townhouse."
   },
   "Buy": {
     "eyebrow": "Buyer advisory",
@@ -130,6 +136,7 @@
     "title": "Screen the thesis before falling in love with the asset.",
     "body": "Use consistent assumptions for income, expenses, financing, renovation, regulation and exit value before allocating time or capital.",
     "cta": "Define an investment thesis",
+    "directAnswer": "Direct answer",
     "exploreNeighborhoods": "Explore neighborhoods",
     "allNeighborhoods": "All neighborhoods"
   },

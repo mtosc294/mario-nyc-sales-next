@@ -17,7 +17,6 @@ export type Neighborhood = {
   name: string;
   borough: Borough;
   summary: string;
-  image: string;
   medianLabel: string;
   methodologyNote: string;
   directAnswer: string;
@@ -49,7 +48,6 @@ export const neighborhoods: Neighborhood[] = [
       "Full-service towers, waterfront access, historic streets, and a broad condo inventory near Wall Street, Battery Park, and the Seaport.",
     medianLabel: "$1.18M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/financial-district.png",
     directAnswer:
       "The Financial District is a condo-heavy Lower Manhattan market where value hinges on the building (amenities, common charges, reserves), exact micro-location (waterfront vs. inland corridors), and how your unit compares to active high-rise competition—not on neighborhood averages alone. Buyers should underwrite monthly costs and view corridors; sellers should price against current tower inventory before launch.",
     definition:
@@ -127,7 +125,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "A deep co-op market, established condominium buildings, and block-by-block pricing differences from Midtown to the 90s.",
     medianLabel: "$1.35M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/upper-east-side.png",
     directAnswer:
       "The Upper East Side rewards buyers and sellers who treat each block and building type separately: co-op board standards, condo flexibility, and avenue-versus-side-street dynamics can change pricing and timeline more than the neighborhood label alone.",
     definition:
@@ -181,7 +178,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Prewar co-ops, family-oriented streets, and condo options near Central Park, Riverside Park, and major subway lines.",
     medianLabel: "$1.28M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/upper-west-side.png",
     directAnswer:
       "The Upper West Side is a residential Manhattan market where co-op depth, park adjacency, and building financials drive outcomes. Buyers should compare carrying costs and board rules; sellers should price to the specific building class and current competition.",
     definition:
@@ -235,7 +231,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Lofts, condominiums, and townhouse inventory between Midtown and the Village, with strong lifestyle and gallery-district demand.",
     medianLabel: "$1.45M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/chelsea.png",
     directAnswer:
       "Chelsea buyers and sellers should focus on building type—loft conversions, modern condos, and townhouses trade on different comps. Lifestyle demand is strong, but monthly costs, renovation history, and exact block still decide price.",
     definition:
@@ -288,7 +283,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "New development, converted lofts, townhouses, and lifestyle-driven buyer demand along the waterfront and inland blocks.",
     medianLabel: "$1.42M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/williamsburg.png",
     directAnswer:
       "Williamsburg is a Brooklyn market where new development, resale condos, lofts, and townhouses compete on lifestyle and location. Buyers should compare waterfront premiums, abatements, and carrying costs; sellers should position against both new and resale inventory.",
     definition:
@@ -342,7 +336,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Brownstones, co-ops, and condos near Prospect Park with family-oriented demand and block-level price variation.",
     medianLabel: "$1.55M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/park-slope.png",
     directAnswer:
       "Park Slope decisions turn on housing type and exact block: brownstones, co-ops, and condos do not share the same buyer pool. Park proximity and building condition matter as much as the neighborhood brand.",
     definition:
@@ -395,7 +388,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Historic brownstones and co-ops with Manhattan skyline proximity, Promenade access, and limited inventory.",
     medianLabel: "$1.65M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/brooklyn-heights.png",
     directAnswer:
       "Brooklyn Heights is a low-inventory, historically protected Brooklyn market where scarcity and building character support pricing—but only when the specific property’s condition, ownership type, and comps justify it.",
     definition:
@@ -448,7 +440,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Modern towers, skyline views, and quick Manhattan access with an expanding condominium resale market.",
     medianLabel: "$1.10M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/long-island-city.png",
     directAnswer:
       "Long Island City is a condo-tower Queens market where views, amenities, tax structure, and new-supply competition drive value. Investors and buyers must model abatements and monthly costs; sellers must price against active tower inventory.",
     definition:
@@ -502,7 +493,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Diverse housing stock, strong local retail, and more approachable entry points than many Manhattan condo corridors.",
     medianLabel: "$850K indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/astoria.png",
     directAnswer:
       "Astoria offers a wider mix of co-ops, condos, and small multifamily than condo-tower Queens waterfront markets. Buyers should match property type to financing and lifestyle; sellers should comps within the same housing class.",
     definition:
@@ -555,7 +545,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Suburban-feeling Bronx neighborhood with houses, co-ops, and condos, parkland, and more space than core Manhattan corridors.",
     medianLabel: "$720K indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/riverdale.png",
     directAnswer:
       "Riverdale serves buyers who want more space and a residential pace within NYC. Outcomes depend on housing type—houses, co-ops, and condos follow different comps—and on commute and building or property condition realities.",
     definition:
@@ -608,7 +597,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Staten Island’s civic and ferry hub with growing residential interest, harbor views, and a different price structure than Manhattan.",
     medianLabel: "$580K indicative median",
     methodologyNote: methodology,
-    image: "/images/hero-city.svg",
     directAnswer:
       "St. George is Staten Island’s ferry-connected hub where buyers trade Manhattan prices for space and waterfront adjacency—while underwriting ferry commute realities, local comps, and property condition. It is not priced like a Manhattan condo corridor and should not be analyzed as one.",
     definition:
@@ -661,7 +649,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Corporate-adjacent condos and co-ops near Grand Central, with strong Pied-à-terre and primary-residence demand.",
     medianLabel: "$1.25M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/midtown-east.png",
     directAnswer:
       "Midtown East pricing turns on building class, floor, noise exposure, and proximity to transit—not a single corridor average. Buyers should underwrite monthly costs; sellers should comps against similar towers and co-ops.",
     definition:
@@ -715,7 +702,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Lofts, luxury condos, and townhouses in a low-rise historic district with limited inventory and high price points.",
     medianLabel: "$3.20M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/tribeca.png",
     directAnswer:
       "Tribeca is a scarce, high-price Lower Manhattan market where loft volume, outdoor space, and building character drive outcomes. Comps must stay tight—neighborhood averages mislead.",
     definition:
@@ -769,7 +755,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Waterfront and inland Brooklyn living with condos, townhouses, and a strong local retail scene near Williamsburg.",
     medianLabel: "$1.20M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/greenpoint.png",
     directAnswer:
       "Greenpoint buyers and sellers should separate waterfront new development from inland smaller stock. Lifestyle demand is strong, but abatements, monthly costs, and exact block still decide price.",
     definition:
@@ -823,7 +808,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Evolving Brooklyn market with multifamily, condos, and loft conversions—important for value and investment screening.",
     medianLabel: "$900K indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/bushwick.png",
     directAnswer:
       "Bushwick rewards buyers and investors who underwrite block-by-block. Property type, building condition, and rental rules matter more than borough-wide narratives.",
     definition:
@@ -877,7 +861,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Queens neighborhood with co-ops, houses, and condos, strong transit, and a more residential pace than core Manhattan.",
     medianLabel: "$750K indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/forest-hills.png",
     directAnswer:
       "Forest Hills decisions depend on housing type—garden co-ops, houses, and condos follow different comps. Buyers should match ownership type to lifestyle and financing; sellers should stay local on pricing.",
     definition:
@@ -931,7 +914,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "Dense Queens hub with condos, co-ops, and houses, major retail, and diverse buyer demand.",
     medianLabel: "$680K indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/flushing.png",
     directAnswer:
       "Flushing is a high-activity Queens market where condo towers, co-ops, and houses serve different buyer pools. Price and underwrite within the correct property class.",
     definition:
@@ -985,7 +967,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "South Bronx waterfront and inland blocks with newer condos, multifamily, and improving connectivity to Manhattan.",
     medianLabel: "$550K indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/mott-haven.png",
     directAnswer:
       "Mott Haven is a changing Bronx market where new condo product and multifamily assets require careful underwriting. Buyers and investors should rely on local comps and building-level diligence—not citywide narratives.",
     definition:
@@ -1039,7 +1020,6 @@ export const neighborhoods: Neighborhood[] = [
     summary: "High-rise condo hub with strong transit, mixed-use density, and competition between new and resale towers.",
     medianLabel: "$1.05M indicative median",
     methodologyNote: methodology,
-    image: "/images/neighborhoods/downtown-brooklyn.png",
     directAnswer:
       "Downtown Brooklyn is a condo-tower market where amenities, views, monthly costs, and new-supply competition drive results. Sellers must price against active towers; buyers should underwrite abatements and carrying costs.",
     definition:

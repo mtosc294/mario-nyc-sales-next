@@ -22,7 +22,7 @@ function DropdownPanel({
   return (
     <div
       className={cn(
-        "absolute left-0 top-full z-50 mt-0 border border-[var(--line)] bg-white text-[var(--ink)] shadow-[0_18px_40px_rgba(16,27,45,0.14)]",
+        "absolute left-0 top-full z-50 mt-0 border border-[var(--line)] bg-white text-ink shadow-[0_18px_40px_rgba(16,27,45,0.14)]",
         multi ? "min-w-[480px]" : "min-w-[280px]",
       )}
       role="menu"
@@ -108,7 +108,7 @@ export function PrimaryNav() {
                 href={item.href}
                 className={cn(
                   "inline-flex items-center gap-1 px-3 py-2.5 text-sm transition",
-                  isOpen ? "bg-white/10 text-white" : "hover:text-[var(--platinum)]",
+                  isOpen ? "bg-white/10 text-white" : "hover:text-platinum",
                 )}
                 aria-expanded={isOpen}
                 aria-haspopup="menu"
@@ -200,7 +200,7 @@ export function PrimaryNav() {
                   {expanded ? (
                     <ul className="mb-4 space-y-1 pb-2">
                       <li>
-                        <Link href={item.href} className="block px-1 py-2 text-sm text-[var(--platinum)]" onClick={closeAll}>
+                        <Link href={item.href} className="block px-1 py-2 text-sm text-platinum" onClick={closeAll}>
                           {t("overview", { label })}
                         </Link>
                       </li>
@@ -222,12 +222,12 @@ export function PrimaryNav() {
                 </div>
               );
             })}
-            <a href={siteConfig.phoneHref} className="mt-6 text-sm font-semibold text-[var(--platinum)]">
+            <a href={siteConfig.phoneHref} className="mt-6 text-sm font-semibold text-platinum">
               {siteConfig.phone}
             </a>
             <Link
               href="/#strategy"
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-sm bg-white px-4 py-3 text-sm font-semibold text-[var(--navy)]"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-sm bg-white px-4 py-3 text-sm font-semibold text-navy"
               onClick={closeAll}
             >
               {t("bookConsult")} <ArrowUpRight className="size-3.5" />

@@ -72,7 +72,7 @@ export function SiteHeader() {
           <span className="min-w-0">
             <strong
               className={cn(
-                "block truncate tracking-wide transition-[font-size]",
+                "block truncate tracking-wide font-display transition-[font-size]",
                 motionClass,
                 solid ? "text-[13px]" : "text-sm",
               )}
@@ -81,7 +81,7 @@ export function SiteHeader() {
             </strong>
             <small
               className={cn(
-                "mt-0.5 hidden max-w-[300px] text-[9px] uppercase leading-[1.35] tracking-[0.06em] text-[var(--platinum)] sm:block",
+                "mt-0.5 hidden max-w-[300px] text-[9px] uppercase leading-[1.35] tracking-[0.06em] text-platinum sm:block",
                 solid && "opacity-90",
               )}
             >
