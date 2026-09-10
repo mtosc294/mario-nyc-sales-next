@@ -10,7 +10,15 @@ export type LeadInput = {
   message?: string;
 };
 
-export function scoreLead(lead: LeadInput) {
+export type LeadScoreResult = {
+  score: number;
+  stage: string;
+  nextAction: string;
+};
+
+export type ScoredLead = LeadInput & LeadScoreResult;
+
+export function scoreLead(lead: LeadInput): LeadScoreResult {
   let score = 35;
   if (lead.phone?.trim()) score += 12;
   if (/now|0-3|3-6|immediate/i.test(lead.timeline)) score += 22;

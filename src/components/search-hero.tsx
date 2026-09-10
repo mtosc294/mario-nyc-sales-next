@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
 
 export function SearchHero() {
   const t = useTranslations("Hero");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [entered, setEntered] = useState(false);
 
   const pathCtas = [
     { label: t("buy"), href: "/buy" as const },
@@ -47,6 +49,16 @@ export function SearchHero() {
     };
   }, []);
 
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduce.matches) {
+      setEntered(true);
+      return;
+    }
+    const id = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
     <section className="relative -mt-[72px] min-h-[100svh] overflow-hidden bg-zinc-950 text-white max-sm:min-h-[min(100svh,640px)] min-[601px]:min-h-[calc(720px+72px)]">
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
@@ -67,10 +79,20 @@ export function SearchHero() {
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/75 via-[color-mix(in_srgb,var(--navy)_35%,transparent)] to-[var(--navy)]/15" />
       </div>
       <div className="relative z-[2] mx-auto flex min-h-[100svh] w-[min(1180px,calc(100%-40px))] flex-col items-center justify-center px-2 pb-[70px] pt-[142px] text-center max-sm:min-h-[min(100svh,640px)] max-sm:w-[min(100%-28px,1180px)] max-sm:px-1 max-sm:pb-16 max-sm:pt-28 min-[601px]:min-h-[calc(720px+72px)]">
-        <h1 className="m-0 mx-auto max-w-[900px] text-[70px] font-semibold leading-[0.97] tracking-[-0.055em] text-shadow-hero max-[900px]:text-[50px] max-[600px]:text-[clamp(2rem,9vw,2.7rem)]">
+        <h1
+          className={cn(
+            "hero-enter m-0 mx-auto max-w-[900px] text-[70px] font-semibold leading-[0.97] tracking-[-0.055em] text-shadow-hero max-[900px]:text-[50px] max-[600px]:text-[clamp(2rem,9vw,2.7rem)]",
+            entered && "hero-enter-in",
+          )}
+        >
           {t("headline")}
         </h1>
-        <div className="mt-8 flex w-full max-w-[720px] flex-col gap-3 max-sm:mt-8 sm:mt-10 sm:flex-row sm:justify-center">
+        <div
+          className={cn(
+            "hero-enter hero-enter-delay mt-8 flex w-full max-w-[720px] flex-col gap-3 max-sm:mt-8 sm:mt-10 sm:flex-row sm:justify-center",
+            entered && "hero-enter-in",
+          )}
+        >
           {pathCtas.map((cta) => (
             <Link
               key={cta.href}

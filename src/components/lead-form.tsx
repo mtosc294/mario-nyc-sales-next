@@ -33,6 +33,7 @@ export function LeadForm() {
   const [segment, setSegment] = useState<Segment>("seller");
   const [result, setResult] = useState<Result>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fromUrl = segmentFromUrl();
@@ -41,18 +42,28 @@ export function LeadForm() {
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setError(null);
     setLoading(true);
     const form = new FormData(event.currentTarget);
     const payload = Object.fromEntries(form.entries());
-    const response = await fetch("/api/leads", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ ...payload, segment }),
-    });
-    const data = await response.json();
-    setResult(data);
-    trackConsultSubmit(segment);
-    setLoading(false);
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ...payload, segment }),
+      });
+      const data = (await response.json()) as Result & { error?: string };
+      if (!response.ok || typeof data?.score !== "number" || !data.stage || !data.nextAction) {
+        setError(t("submitError"));
+        return;
+      }
+      setResult({ score: data.score, stage: data.stage, nextAction: data.nextAction });
+      trackConsultSubmit(segment);
+    } catch {
+      setError(t("submitError"));
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -84,6 +95,7 @@ export function LeadForm() {
               onClick={() => {
                 setSegment(item);
                 setResult(null);
+                setError(null);
               }}
               className={`rounded-[11px] px-1.5 py-3 text-xs font-bold capitalize sm:px-3 sm:text-sm ${
                 segment === item ? "bg-[var(--navy)] text-white" : "text-neutral-500"
@@ -108,7 +120,13 @@ export function LeadForm() {
             </div>
           </div>
         ) : (
-          <form onSubmit={submit} className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+          <form onSubmit={submit} className="relative grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+            <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+              <label>
+                Website
+                <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </label>
+            </div>
             <label className="grid gap-2 text-[13px] font-bold">
               {t("name")}
               <Input name="name" required placeholder="Your name" className="h-12 rounded-xl text-base" />
@@ -166,6 +184,11 @@ export function LeadForm() {
                 placeholder="Goals, constraints, financing, condition, or other context"
               />
             </label>
+            {error ? (
+              <p className="sm:col-span-2 text-sm font-medium text-red-700" role="alert">
+                {error}
+              </p>
+            ) : null}
             <Button className="h-12 w-full rounded-full sm:col-span-2" disabled={loading}>
               {loading ? t("sending") : t("submit")}
             </Button>

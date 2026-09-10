@@ -20,6 +20,23 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Lead capture
+
+Strategy-form posts go to `/api/leads`. The handler scores the lead, **writes it to Neon first**, then emails Mario via Resend. A failed email does not drop the lead. A failed write does not show the thank-you state.
+
+Create a Neon project and run [`scripts/leads.sql`](scripts/leads.sql) once in the Neon SQL editor.
+
+Local: put secrets in `.env.local` (gitignored). Production: the same keys in the Vercel project, then redeploy. A deploy without `DATABASE_URL` returns 503 on submit.
+
+```bash
+DATABASE_URL=          # Neon connection string
+RESEND_API_KEY=        # Resend API key
+LEAD_NOTIFY_TO=        # Inbox to notify (defaults to mario.a@toscanoholdings.com)
+LEAD_FROM=             # Must be a verified Resend from-address
+```
+
+`LEAD_FROM` must use a **verified Resend domain**. Until `mariotoscano.com` is verified, local/dev can use `Mario Toscano <onboarding@resend.dev>` (Resend only delivers that to the Resend account email). Production: verify the domain and use e.g. `Mario Toscano <leads@mariotoscano.com>`.
+
 Optional analytics:
 
 ```bash
@@ -59,6 +76,7 @@ Contact, brokerage, and domain live in `src/lib/site-config.ts`. Set `licenseNum
 ## Still required for full production
 
 - Privacy, accessibility, and fair-housing pages
-- Server-side lead persistence, consent, anti-spam, CRM routing
+- Consent copy and stronger anti-spam (Turnstile) if form spam becomes a problem
+- CRM routing beyond Neon + email
 - Sourced (non-placeholder) market statistics where claimed
 - Hosting deploy pointed at mariotoscano.com

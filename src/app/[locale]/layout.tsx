@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: { default: t("titleDefault"), template: t("titleTemplate") },
+    title: { default: t("titleDefault"), template: `%s | ${siteConfig.name}` },
     description: t("description"),
     alternates: {
       languages: Object.fromEntries(

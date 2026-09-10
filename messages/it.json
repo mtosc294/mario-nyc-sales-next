@@ -85,7 +85,10 @@
     "guides": "Guide",
     "guidesTitle": "Risposte chiare alle domande che bloccano le trattative.",
     "strategy": "Strategia",
-    "getStarted": "Inizia"
+    "getStarted": "Inizia",
+    "proofBoroughs": "Distretti serviti",
+    "proofPaths": "Percorsi chiari",
+    "proofGuides": "Guide ai quartieri"
   },
   "Buy": {
     "eyebrow": "Consulenza acquirente",
@@ -161,6 +164,7 @@
     "sending": "Invio…",
     "thanksTitle": "Grazie—ti contatterò.",
     "youreSet": "Tutto pronto",
-    "submitAnother": "Invia un altro"
+    "submitAnother": "Invia un altro",
+    "submitError": "Invio non riuscito. Riprova."
   }
 }

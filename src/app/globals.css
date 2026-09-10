@@ -21,6 +21,14 @@ html {
   overflow-x: clip;
 }
 
+/* Sticky header offset for in-page anchors */
+main [id],
+#strategy,
+#guides,
+#neighborhoods {
+  scroll-margin-top: 72px;
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -46,7 +54,7 @@ a {
 /* Motion primitives — transform + opacity only */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(20px);
   transition:
     opacity var(--motion) var(--ease-out),
     transform var(--motion) var(--ease-out);
@@ -60,7 +68,7 @@ a {
 
 .stagger > * {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(20px);
   transition:
     opacity var(--motion) var(--ease-out),
     transform var(--motion) var(--ease-out);
@@ -71,25 +79,25 @@ a {
   transition-delay: 0ms;
 }
 .stagger.stagger-in > *:nth-child(2) {
-  transition-delay: 70ms;
+  transition-delay: 100ms;
 }
 .stagger.stagger-in > *:nth-child(3) {
-  transition-delay: 140ms;
+  transition-delay: 200ms;
 }
 .stagger.stagger-in > *:nth-child(4) {
-  transition-delay: 210ms;
+  transition-delay: 300ms;
 }
 .stagger.stagger-in > *:nth-child(5) {
-  transition-delay: 280ms;
+  transition-delay: 400ms;
 }
 .stagger.stagger-in > *:nth-child(6) {
-  transition-delay: 350ms;
+  transition-delay: 500ms;
 }
 .stagger.stagger-in > *:nth-child(7) {
-  transition-delay: 420ms;
+  transition-delay: 600ms;
 }
 .stagger.stagger-in > *:nth-child(8) {
-  transition-delay: 490ms;
+  transition-delay: 700ms;
 }
 
 .stagger.stagger-in > * {
@@ -106,6 +114,14 @@ a {
   transform: translate(-50%, 0);
 }
 
+@media (max-width: 600px), (pointer: coarse) {
+  .reveal,
+  .stagger > * {
+    transform: translateY(16px);
+    transition-duration: 400ms;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -113,7 +129,8 @@ a {
 
   .reveal,
   .stagger > *,
-  .sticky-cta {
+  .sticky-cta,
+  .hero-enter {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -122,4 +139,21 @@ a {
   .sticky-cta {
     transform: translate(-50%, 0) !important;
   }
+}
+
+.hero-enter {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 700ms var(--ease-out),
+    transform 700ms var(--ease-out);
+}
+
+.hero-enter.hero-enter-in {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-enter-delay {
+  transition-delay: 120ms;
 }

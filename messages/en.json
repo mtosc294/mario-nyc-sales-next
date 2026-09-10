@@ -85,7 +85,10 @@
     "guides": "Guides",
     "guidesTitle": "Clear answers to the questions that stop deals.",
     "strategy": "Strategy",
-    "getStarted": "Get started"
+    "getStarted": "Get started",
+    "proofBoroughs": "Boroughs served",
+    "proofPaths": "Clear paths",
+    "proofGuides": "Neighborhood guides"
   },
   "Buy": {
     "eyebrow": "Buyer advisory",
@@ -161,6 +164,7 @@
     "sending": "Sending…",
     "thanksTitle": "Thanks—I'll be in touch.",
     "youreSet": "You're all set",
-    "submitAnother": "Submit another"
+    "submitAnother": "Submit another",
+    "submitError": "Couldn't send. Please try again."
   }
 }

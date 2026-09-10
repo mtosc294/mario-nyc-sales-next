@@ -3,6 +3,7 @@ import { ArrowRight, BarChart3, Check, CircleDollarSign, MapPin } from "lucide-r
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SearchHero } from "@/components/search-hero";
 import { LeadForm } from "@/components/lead-form";
+import { HomeProofBand } from "@/components/home-proof-band";
 import { Reveal, Stagger } from "@/components/motion/reveal";
 import { Link } from "@/i18n/navigation";
 import { guides, neighborhoods } from "@/lib/site-data";
@@ -16,12 +17,21 @@ const processSteps = [
   ["Stay guided to closing", "Support from first conversation through contracts and keys."],
 ] as const;
 
+const boroughChips = [
+  { labelKey: "manhattan" as const, href: "/neighborhoods#manhattan" },
+  { labelKey: "brooklyn" as const, href: "/neighborhoods#brooklyn" },
+  { labelKey: "queens" as const, href: "/neighborhoods#queens" },
+  { labelKey: "bronx" as const, href: "/neighborhoods#bronx" },
+  { labelKey: "statenIsland" as const, href: "/neighborhoods#staten-island" },
+];
+
 type Props = { params: Promise<{ locale: string }> };
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
+  const tNav = await getTranslations("Nav");
   const featuredHoods = neighborhoods.slice(0, 4);
   const pathCards = [
     { title: t("pathSellTitle"), text: t("pathSellText"), href: "/sell" as const, icon: "⌂" },
@@ -33,8 +43,8 @@ export default async function HomePage({ params }: Props) {
     <main className="bg-[var(--paper)]">
       <SearchHero />
 
-      <section className="border-b border-[var(--line)] bg-white px-5 py-12 lg:px-8 lg:py-14">
-        <div className="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-14">
+      <section className="border-b border-[var(--line)] bg-white px-5 py-14 lg:px-8 lg:py-16">
+        <Reveal className="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-14">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--platinum)]">{t("howToStart")}</p>
             <p className="mt-4 text-lg leading-8 text-neutral-700">{t("howToStartBody")}</p>
@@ -43,12 +53,14 @@ export default async function HomePage({ params }: Props) {
             <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--navy)]">{t("directAnswer")}</p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink)]">{t("directAnswerBody")}</p>
           </div>
-        </div>
+        </Reveal>
       </section>
 
-      <section className="py-[95px] max-[900px]:py-[70px]">
+      <HomeProofBand boroughs={5} paths={3} guides={neighborhoods.length} />
+
+      <section className="py-16 max-[900px]:py-14 lg:py-[88px]">
         <div className="mx-auto w-[min(1180px,calc(100%-40px))] max-sm:w-[min(100%-28px,1180px)]">
-          <Reveal className="grid items-end gap-[60px] max-[900px]:grid-cols-1 md:grid-cols-[1fr_.68fr]">
+          <Reveal className="grid items-end gap-10 max-[900px]:grid-cols-1 md:grid-cols-[1fr_.68fr] md:gap-[60px]">
             <div>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">{t("choosePath")}</span>
               <h2 className="mt-3.5 text-5xl font-semibold leading-[1.03] tracking-[-0.045em] max-[600px]:text-[37px]">
@@ -74,8 +86,8 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="bg-[var(--navy)] py-[95px] text-white max-[900px]:py-[70px]">
-        <div className="mx-auto grid w-[min(1180px,calc(100%-40px))] gap-[70px] max-[900px]:grid-cols-1 lg:grid-cols-[.75fr_1.25fr] max-sm:w-[min(100%-28px,1180px)]">
+      <section className="bg-[var(--navy)] py-16 text-white max-[900px]:py-14 lg:py-[88px]">
+        <div className="mx-auto grid w-[min(1180px,calc(100%-40px))] gap-12 max-[900px]:grid-cols-1 lg:grid-cols-[.75fr_1.25fr] lg:gap-[70px] max-sm:w-[min(100%-28px,1180px)]">
           <Reveal>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">
               {t("howWeWork")}
@@ -97,9 +109,9 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section id="neighborhoods" className="py-[95px] max-[900px]:py-[70px]">
+      <section id="neighborhoods" className="py-16 max-[900px]:py-14 lg:py-[88px]">
         <div className="mx-auto w-[min(1180px,calc(100%-40px))] max-sm:w-[min(100%-28px,1180px)]">
-          <Reveal className="grid items-end gap-[60px] max-[900px]:grid-cols-1 md:grid-cols-[1fr_.68fr]">
+          <Reveal className="grid items-end gap-10 max-[900px]:grid-cols-1 md:grid-cols-[1fr_.68fr] md:gap-[60px]">
             <div>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">
                 {t("neighborhoods")}
@@ -110,7 +122,18 @@ export default async function HomePage({ params }: Props) {
             </div>
             <p className="leading-7 text-neutral-600">{t("neighborhoodsBody")}</p>
           </Reveal>
-          <Stagger className="mt-[42px] grid gap-[17px] sm:grid-cols-2 lg:grid-cols-4 max-[600px]:grid-cols-1">
+          <Stagger className="mt-8 flex flex-wrap gap-2">
+            {boroughChips.map((chip) => (
+              <Link
+                key={chip.href}
+                href={chip.href}
+                className="rounded-full border border-[var(--line)] bg-white px-4 py-2 text-sm font-medium transition hover:border-[var(--navy)] hover:bg-[var(--navy-soft)]"
+              >
+                {tNav(chip.labelKey)}
+              </Link>
+            ))}
+          </Stagger>
+          <Stagger className="mt-10 grid gap-[17px] sm:grid-cols-2 lg:grid-cols-4 max-[600px]:grid-cols-1">
             {featuredHoods.map((hood) => (
               <Link
                 key={hood.slug}
@@ -141,8 +164,8 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="bg-[var(--navy-soft)] py-[95px] max-[900px]:py-[70px]">
-        <div className="mx-auto grid w-[min(1180px,calc(100%-40px))] items-center gap-[50px] max-[900px]:grid-cols-1 lg:grid-cols-2 max-sm:w-[min(100%-28px,1180px)]">
+      <section className="bg-[var(--navy-soft)] py-16 max-[900px]:py-14 lg:py-[88px]">
+        <div className="mx-auto grid w-[min(1180px,calc(100%-40px))] items-center gap-10 max-[900px]:grid-cols-1 lg:grid-cols-2 lg:gap-[50px] max-sm:w-[min(100%-28px,1180px)]">
           <Reveal className="relative overflow-hidden rounded-[31px] bg-[var(--navy)] p-6 text-white max-sm:rounded-2xl sm:p-[38px]">
             <div className="pointer-events-none absolute -right-[50px] -top-[50px] size-[220px] rounded-full bg-white/5 blur-[35px]" />
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">For sellers</span>
@@ -189,7 +212,7 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section id="guides" className="py-[95px] max-[900px]:py-[70px]">
+      <section id="guides" className="py-16 max-[900px]:py-14 lg:py-[88px]">
         <div className="mx-auto grid w-[min(1180px,calc(100%-40px))] gap-10 max-[900px]:grid-cols-1 lg:grid-cols-[.65fr_1.35fr] max-sm:w-[min(100%-28px,1180px)]">
           <Reveal>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--platinum)]">{t("guides")}</span>
@@ -218,9 +241,11 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section id="strategy" className="bg-[color-mix(in_srgb,var(--platinum)_18%,white)] py-[95px] max-[900px]:py-[70px]">
+      <section id="strategy" className="bg-[color-mix(in_srgb,var(--platinum)_18%,white)] py-16 max-[900px]:py-14 lg:py-[88px]">
         <div className="mx-auto w-[min(1180px,calc(100%-40px))] max-sm:w-[min(100%-28px,1180px)]">
-          <LeadForm />
+          <Reveal>
+            <LeadForm />
+          </Reveal>
         </div>
       </section>
     </main>

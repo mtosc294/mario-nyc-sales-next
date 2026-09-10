@@ -85,7 +85,10 @@
     "guides": "Guías",
     "guidesTitle": "Respuestas claras a las preguntas que frenan operaciones.",
     "strategy": "Estrategia",
-    "getStarted": "Empezar"
+    "getStarted": "Empezar",
+    "proofBoroughs": "Distritos cubiertos",
+    "proofPaths": "Caminos claros",
+    "proofGuides": "Guías de barrios"
   },
   "Buy": {
     "eyebrow": "Asesoría al comprador",
@@ -161,6 +164,7 @@
     "sending": "Enviando…",
     "thanksTitle": "Gracias—estaré en contacto.",
     "youreSet": "Listo",
-    "submitAnother": "Enviar otro"
+    "submitAnother": "Enviar otro",
+    "submitError": "No se pudo enviar. Inténtalo de nuevo."
   }
 }

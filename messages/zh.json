@@ -85,7 +85,10 @@
     "guides": "指南",
     "guidesTitle": "对卡住交易的问题给出清晰回答。",
     "strategy": "策略",
-    "getStarted": "开始"
+    "getStarted": "开始",
+    "proofBoroughs": "覆盖行政区",
+    "proofPaths": "清晰路径",
+    "proofGuides": "社区指南"
   },
   "Buy": {
     "eyebrow": "购房顾问",
@@ -161,6 +164,7 @@
     "sending": "发送中…",
     "thanksTitle": "谢谢——我会与你联系。",
     "youreSet": "已完成",
-    "submitAnother": "再提交一份"
+    "submitAnother": "再提交一份",
+    "submitError": "提交失败，请重试。"
   }
 }
