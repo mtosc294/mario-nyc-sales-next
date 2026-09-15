@@ -7,6 +7,7 @@ import { Reveal, Stagger } from "@/components/motion/reveal";
 import { pageAlternates } from "@/lib/seo";
 import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 import { TypeHero } from "@/components/type-hero";
+import { NeighborhoodsAtlas } from "@/components/neighborhoods-atlas";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -61,28 +62,14 @@ export default async function NeighborhoodsHubPage({ params }: Props) {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16 lg:px-8">
-        <Reveal className="border-t border-[var(--line)] pt-10">
-          <p className="kicker">Index</p>
-          <div className="mt-8 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-            {boroughs.map((borough) => {
-              const hoods = neighborhoodsByBorough(borough);
-              return (
-                <div key={`index-${borough}`}>
-                  <h2 className="font-display text-2xl">{borough}</h2>
-                  <ul className="mt-4 grid gap-2">
-                    {hoods.map((hood) => (
-                      <li key={hood.slug}>
-                        <Link href={`/neighborhoods/${hood.slug}`} className="text-neutral-700 hover:underline">
-                          {hood.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </Reveal>
+        <NeighborhoodsAtlas
+          hoods={neighborhoods.map((hood) => ({
+            slug: hood.slug,
+            name: hood.name,
+            borough: hood.borough,
+            summary: hood.summary,
+          }))}
+        />
 
         <div className="mt-20 grid gap-16">
           {boroughs.map((borough) => {

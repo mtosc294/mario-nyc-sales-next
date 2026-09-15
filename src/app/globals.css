@@ -198,3 +198,41 @@
 .hero-enter-delay-2 {
   transition-delay: 220ms;
 }
+
+.territory-map .maplibregl-ctrl-group {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  background: #fff;
+}
+
+.territory-map .maplibregl-ctrl-group button {
+  width: 34px;
+  height: 34px;
+  background: #fff;
+}
+
+.territory-map .maplibregl-ctrl-group button + button {
+  border-top: 1px solid var(--line);
+}
+
+.territory-map .maplibregl-ctrl-group button:hover {
+  background: var(--navy-soft);
+}
+
+.territory-map .maplibregl-ctrl-group button:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: -2px;
+}
+
+.territory-map .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: brightness(0);
+  opacity: 0.78;
+}
+
+.territory-map .maplibregl-cooperative-gesture-screen {
+  background: color-mix(in srgb, var(--navy) 78%, transparent);
+  color: #fff;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
